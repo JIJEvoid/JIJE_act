@@ -32,10 +32,12 @@ class ThreeDWorld {
         // 物体添加
         this.addObjs();
         // 轨道控制插件（鼠标拖拽视角、缩放等）
-        this.orbitControls = new THREE.OrbitControls(this.camera);
+        /*this.orbitControls = new THREE.OrbitControls(this.camera);
         this.orbitControls.autoRotate = true;
         this.orbitControls.enableKeys = false;
-        this.orbitControls.enableZoom = false;
+        this.orbitControls.enableZoom = false;*/
+
+        this.scene.add(this.camera);
         // 循环更新场景
         this.update();
     }
@@ -225,6 +227,18 @@ class ThreeDWorld {
                     ;
             }
         }
+    }
+
+    // 切换模型
+    handleSlider(begin,end){
+        let dir = ``;
+        if(end>begin){
+            dir = `down`;
+        }else{
+            dir = `up`;
+        }
+        this.checkNextStep(this.particleSystem,this.pos,dir);
+        this.runTweenByType(this.order);
     }
 
     // 射线处理
@@ -489,11 +503,11 @@ class ThreeDWorld {
         // 粒子动画
         let tween = new TWEEN.Tween(pos).to({
             val: 0
-        }, this.pos.val*1500).easing(TWEEN.Easing.Quadratic.InOut).delay(0).onUpdate(updateCallback.bind(this, null)).onComplete(completeCallBack.bind(this, 'go'));
+        }, this.pos.val*1500).easing(TWEEN.Easing.Quadratic.InOut).onUpdate(updateCallback.bind(this, null)).onComplete(completeCallBack.bind(this, 'go'));
 
         let tweenBack = new TWEEN.Tween(pos).to({
             val: 0
-        }, this.pos.val*1500).easing(TWEEN.Easing.Quadratic.InOut).delay(0).onUpdate(updateCallback.bind(this, null)).onComplete(completeCallBack.bind(this, 'back'));
+        }, this.pos.val*1500).easing(TWEEN.Easing.Quadratic.InOut).onUpdate(updateCallback.bind(this, null)).onComplete(completeCallBack.bind(this, 'back'));
 
         //将这两个缓动形式保存起来,相互调用
         this.tweenInstance1 = tween;
