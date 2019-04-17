@@ -33,6 +33,7 @@
             new window.fullpage('#fullpage', {
                 //options here
                 autoScrolling:true,
+                licensekey:'open-source-gplv3-license',
                 scrollHorizontally: true,
                 onLeave: function(origin, destination){
                     window.three.handleSlider(origin.index, destination.index);
