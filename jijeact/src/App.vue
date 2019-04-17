@@ -1,17 +1,25 @@
 <template>
-    <div id="app">
-        <full-page ref="fullpage" :options="options" id="fullpage">
-            <div class="section">
-                <h3>Section 1</h3>
-            </div>
-            <div class="section">
-                <h3>Section 2</h3>
-            </div>
-            <div class="section">
-                <h3>Section 3</h3>
-            </div>
-        </full-page>
+    <div>
+        <div style="position: absolute;width: 100vw;height: 100vh;top: 0;left: 0;z-index: 999">
+            <full-page ref="fullpage" :options="options" id="fullpage">
+                <div class="section">
+                    <h3>Section 1</h3>
+                </div>
+                <div class="section">
+                    <h3>Section 2</h3>
+                </div>
+                <div class="section">
+                    <h3>Section 3</h3>
+                </div>
+                <div class="section">
+                    <h3>Section 4</h3>
+                </div>
+            </full-page>
+
+        </div>
+        <div id="world" style="position: absolute;width: 100vw;height: 100vh;top: 0;left: 0;z-index: 99"></div>
     </div>
+
 
 
 </template>
@@ -22,21 +30,28 @@
         data: function () {
             return {
                 options: {
+                    licenseKey:"OPEN-SOURCE-GPLV3-LICENSE",
                     afterLoad: this.afterLoad,
                     scrollBar: false,
                     menu: '#menu',
                     navigation: true,
-                    anchors: ['page1', 'page2', 'page3'],
-                    sectionsColor: ['#41b883', '#ff5f45', '#0798ec', '#fec401', '#1bcee6', '#ee1a59', '#2c3e4f', '#ba5be9', '#b4b8ab']
+                    //anchors: ['page1', 'page2', 'page3'],
                 }
             }
         },
+
         methods: {
             afterLoad: function (before, end) {
                 console.log(before.index, end.index);
-            },
 
+            },
         },
+
+        mounted:function () {
+            //console.log(this.$refs);
+            //this.$refs.fullpage.api.moveSectionDown()
+            window.onLoad();
+        }
 
     }
 </script>

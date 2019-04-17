@@ -7,10 +7,113 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>几介</title>
     <link rel="stylesheet" href="css/main.css">
+    <script type="x-shader/x-vertex" id="vertexshader">
+		attribute float size;
+		attribute vec3 position2;
+		attribute vec3 position3;
+		attribute vec3 position4;
 
+		attribute vec3 beginposition;
+
+		uniform float val;
+		uniform int begin;
+		uniform int end;
+
+		varying vec3 vColor;
+		varying float opacity;
+		varying vec3 beforeposition;
+		varying vec3 afterposition;
+
+		void main() {
+
+			float border = -150.0;
+			float min_border = -140.0;
+			float max_border = 0.0;
+			float max_opacity = 1.0;
+			float min_opacity = 0.03;
+			float sizeAdd = 20.0;
+
+			vec3 vPos;
+
+			if(begin == 0){
+				beforeposition = position;
+			}
+			else if(begin == 1){
+				beforeposition = position2;
+			}
+			else if(begin == 2){
+				beforeposition = position3;
+			}
+			else if(begin == 3){
+				beforeposition = position4;
+			}
+			else if(begin == 99){
+				beforeposition = beginposition;
+			}
+
+			if(end == 0){
+				afterposition = position;
+			}
+			else if(end == 1){
+				afterposition = position2;
+			}
+			else if(end == 2){
+				afterposition = position3;
+			}
+			else if(end == 3){
+				afterposition = position4;
+			}
+
+			vPos.x = beforeposition.x * val + afterposition.x * (1.-val);
+			vPos.y = beforeposition.y* val + afterposition.y * (1.-val);
+			vPos.z = beforeposition.z* val + afterposition.z * (1.-val);
+
+			vec4 mvPosition = modelViewMatrix * vec4( vPos, 1.0 );
+			if(mvPosition.z > border){
+				opacity = max_opacity;
+				gl_PointSize = size;
+			}else if(mvPosition.z < min_border){
+				opacity = min_opacity;
+				gl_PointSize = size + sizeAdd;
+			}else{
+				float percent = (border - mvPosition.z)/(border - min_border);
+				opacity = (1.0-percent) * (max_opacity - min_opacity) + min_opacity;
+				gl_PointSize = percent * (sizeAdd) + size;
+			}
+
+			float positionY = vPos.y;
+			vColor.x = abs(sin(positionY));
+			vColor.y = abs(cos(positionY));
+			vColor.z = abs(cos(positionY));
+			gl_Position = projectionMatrix * mvPosition;
+		}
+	</script>
+    <script type="x-shader/x-fragment" id="fragmentshader">
+		uniform vec3 color;
+		uniform sampler2D texture;
+		varying vec3 vColor;
+		varying float opacity;
+		void main() {
+			gl_FragColor = vec4(vColor * color, opacity);
+			gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );
+		}
+	</script>
+
+    <script src="./lib/three.min.js"></script>
+    <script src="./lib/stats.min.js"></script>
+    <script src="./lib/OrbitControls.js"></script>
+    <script src="./lib/tween.min.js"></script>
+    <script src="./lib/MTLLoader.js"></script>
+    <script src="./lib/OBJLoader.js"></script>
+    <script src="./lib/inflate.min.js"></script>
+    <script src="./lib/FBXLoader.js"></script>
+    <script src="./lib/STLLoader.js"></script>
+    <script src="./lib/PLYLoader.js"></script>
+    <script src="./lib/GLTFLoader.js"></script>
+    <script src="./index.js"></script>
 </head>
 <body>
-
+<div id="app"></div>
 <noscript>
 
     <strong>We're sorry but jijeact doesn't work properly without JavaScript enabled. Please enable it to
@@ -19,10 +122,8 @@
 
 </noscript>
 
-<div id="app">
-
-</div>
-
 <!-- built files will be auto injected -->
+
+
 </body>
 </html>
