@@ -2,10 +2,26 @@
     <div>
         <div style="position: absolute;width: 100vw;height: 100vh;top: 0;left: 0;z-index: 999">
             <div id="fullpage" style="color: #fff;width: 100vw;height: 100vh;">
-                <div class="section">Some section1</div>
-                <div class="section">Some section2</div>
-                <div class="section">Some section3</div>
-                <div class="section">Some section4</div>
+                <div class="section ">
+                    <game class="container">
+
+                    </game>
+                </div>
+                <div class="section ">
+                    <div class="container">
+
+                    </div>
+                </div>
+                <div class="section ">
+                    <div class="container">
+
+                    </div>
+                </div>
+                <div class="section ">
+                    <div class="container">
+
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -16,6 +32,8 @@
 
 <script>
 
+    import game from './components/game'
+
     export default {
         name: 'app',
         data: function () {
@@ -23,7 +41,9 @@
 
             }
         },
-
+        components:{
+            game,
+        },
         methods: {
 
         },
@@ -61,6 +81,10 @@
         top: 0;
         width: 100%;
         height: 100%;
+    }
+
+    .container{
+        height: 100vh;width: 100vw;
     }
 
 </style>
