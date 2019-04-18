@@ -1,5 +1,6 @@
 <!--todo 游戏模块 page1-->
 <template>
+
     <div style="width: 100%;height: 100%;">
 
         <div class="txt left" :class="{'active':hide}">
@@ -7,7 +8,7 @@
         </div>
 
         <div class="dot" :class="{'active':hide}" @click.self="hideImg">
-            <i class="iball" :title="item.title" @click="onclickItem()" :style="{width:item.size+'px',height:item.size+'px',top:item.top+'px',left:item.left}" v-for="(item,index) in itemList" :key="index">
+            <i class="iball" :title="item.title" @click="onclickItem(item)" :style="{width:item.size+'px',height:item.size+'px',top:item.top+'px',left:item.left}" v-for="(item,index) in itemList" :key="index">
                 <b class="dotChild">
 
                 </b>
@@ -19,6 +20,7 @@
         </transition>
 
     </div>
+
 </template>
 
 <script>
@@ -43,7 +45,8 @@
                 itemList: [
                     {
                         title: '侠客天涯路',//标题
-                        img: '',//图片背景
+                        img: './show1.jpg',//图片背景
+                        url:'https://www.baidu.com',
                         size: parseInt(Math.random()*15)+25,//光球尺寸
                         left: 20*Math.random()+'%',
                         top: 20*Math.random()+'%',
@@ -52,9 +55,9 @@
             }
         },
         methods: {
-            onclickItem: function () {
-                this.$store.state.imgPath = './show1.jpg';
-                this.$store.state.url = "https://www.baidu.com";
+            onclickItem: function (item) {
+                this.$store.state.imgPath = item.img;
+                this.$store.state.url = item.url;
             },
             hideImg() {
                 this.$store.state.imgPath = '';
