@@ -5,12 +5,11 @@
             <img class="img" :src="img">
         </div>
         <div class="dot" :class="{'active':hide}" @click.self="hideImg">
-            <i @click="onclickItem()">
+            <i @click="onclickItem()" v-for="(item,index) in itemList" :key="index">
                 <b class="dotChild">
 
                 </b>
             </i>
-
         </div>
 
         <transition name="slide-fade">
@@ -39,7 +38,7 @@
                 img: require('@/assets/t1.png'),
                 isshow: false,
                 //item 光球的尺寸
-                item: [
+                itemList: [
                     {
                         title: '',//标题
                         img: '',//图片背景
