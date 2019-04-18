@@ -12,15 +12,20 @@
             </i>
 
         </div>
+        <img3d v-if="isshow"></img3d>
     </div>
 </template>
 
 <script>
+    import img3d from './child/transform3d_img'
 
     export default {
         name: "game",
         methods: {
 
+        },
+        components:{
+            img3d
         },
         props:{
             hide:Boolean
@@ -29,6 +34,7 @@
             return {
 
                 img:require('@/assets/t1.png'),
+                isshow:false,
                 //item 光球的尺寸
                 sizeList:[],
                 item:[
@@ -40,6 +46,9 @@
                 ],
             }
         },
+        mounted:function () {
+            this.isshow = true
+        }
     }
 
 </script>
