@@ -1,10 +1,10 @@
 <!--todo 游戏模块 page1-->
 <template>
     <div style="width: 100%;height: 100%;">
-        <div class="txt" :class="{'active':start}">
-            <img class="img" src="//game.gtimg.cn/images/up/act/a20170301pre/images/298692010400560.png">
+        <div class="txt left" :class="{'active':hide}">
+            <img class="img" :src="img">
         </div>
-        <div class="dot" :class="{'active':start}">
+        <div class="dot" :class="{'active':hide}">
             <i>
                 <b class="dotChild">
 
@@ -16,22 +16,32 @@
 </template>
 
 <script>
+
     export default {
         name: "game",
         methods: {
-            init() {
-                this.start = true;
-            },
+
+        },
+        props:{
+            hide:Boolean
         },
         data() {
             return {
-                start: false,
+
+                img:require('@/assets/t1.png'),
+                //item 光球的尺寸
+                sizeList:[],
+                item:[
+                    {
+                        title:'',//标题
+                        img:'',//图片背景
+                        size:'',//光球尺寸
+                    }
+                ],
             }
         },
-        mounted: function () {
-            this.init();
-        }
     }
+
 </script>
 
 <style scoped>

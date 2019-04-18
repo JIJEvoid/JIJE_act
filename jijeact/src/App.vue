@@ -2,30 +2,35 @@
     <div>
         <div style="position: absolute;width: 100vw;height: 100vh;top: 0;left: 0;z-index: 999">
             <div id="fullpage" style="color: #fff;width: 100vw;height: 100vh;">
-                <div class="section ">
-                    <game class="container">
+
+                <div class="section">
+                    <game class="container" :hide="selectIndex==0">
 
                     </game>
                 </div>
                 <div class="section ">
-                    <div class="container">
+                    <photo class="container" :hide="selectIndex==1">
 
-                    </div>
+                    </photo>
                 </div>
                 <div class="section ">
-                    <div class="container">
+                    <other class="container" :hide="selectIndex==2">
 
-                    </div>
+                    </other>
                 </div>
                 <div class="section ">
-                    <div class="container">
+                    <movie class="container" :hide="selectIndex==3">
 
-                    </div>
+                    </movie>
                 </div>
+
             </div>
 
         </div>
-        <div id="world" style="position: absolute;width: 100vw;height: 100vh;top: 0;left: 0;z-index: 99"></div>
+
+        <div id="world" style="position: absolute;width: 100vw;height: 100vh;top: 0;left: 0;z-index: 99">
+
+        </div>
     </div>
 
 </template>
@@ -33,16 +38,22 @@
 <script>
 
     import game from './components/game'
+    import photo from './components/photo'
+    import movie from './components/movie'
+    import other from './components/other'
 
     export default {
         name: 'app',
         data: function () {
             return {
-
+                selectIndex:-1,
             }
         },
         components:{
             game,
+            photo,
+            movie,
+            other,
         },
         methods: {
 
@@ -50,6 +61,7 @@
 
         mounted:function () {
             //this.$refs.fullpage.api.moveSectionDown()
+            let me = this;
             new window.fullpage('#fullpage', {
                 //options here
                 autoScrolling:true,
@@ -57,10 +69,15 @@
                 scrollHorizontally: true,
                 onLeave: function(origin, destination){
                     window.three.handleSlider(origin.index, destination.index);
+                    me.selectIndex = destination.index;
                 },
+
                 scrollingSpeed:1800,
             });
             window.onLoad();
+        },
+        created:function () {
+            window.vm = this;
         }
 
     }

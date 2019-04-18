@@ -1,6 +1,8 @@
 class ThreeDWorld {
     // 初始化数据层
     initVo() {
+        // 是否初始化完成
+        this.isInit = false;
         // 开始模型索引
         this.start = 0;
         // 结束模型索引
@@ -522,7 +524,10 @@ class ThreeDWorld {
 
         // 每轮动画完成时的回调函数
         function completeCallBack(order) {
-            console.log(`缓动执行完毕`);
+            if(!this.isInit){
+                this.isInit =!this.isInit;
+                window.vm.selectIndex = 0;
+            }
             let uColor = particleSystem.material.uniforms.color.value;
             // 保存动画顺序状态
             this.order = order;
@@ -592,8 +597,6 @@ class ThreeDWorld {
                 particleSystem.material.uniforms.begin.value = particleSystem.material.uniforms.end.value;
                 particleSystem.material.uniforms.end.value = particleSystem.material.uniforms.end.value-1;
             }
-            console.log(particleSystem.material.uniforms.end.value);
-            console.log(particleSystem.material.uniforms.begin.value);
         }
         if(pos.val==0)pos.val = particleSystem.material.uniforms.val.value = 1;
     }
