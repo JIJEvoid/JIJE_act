@@ -10,7 +10,6 @@
 
                 </b>
             </i>
-
         </div>
     </div>
 </template>
