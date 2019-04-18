@@ -4,15 +4,19 @@
         <div class="txt left" :class="{'active':hide}">
             <img class="img" :src="img">
         </div>
-        <div class="dot" :class="{'active':hide}">
-            <i>
+        <div class="dot" :class="{'active':hide}" @click.self="hideImg">
+            <i @click="onclickItem()">
                 <b class="dotChild">
 
                 </b>
             </i>
 
         </div>
-        <img3d v-if="isshow"></img3d>
+
+        <transition name="slide-fade">
+            <img3d v-if="$store.state.imgPath"></img3d>
+        </transition>
+
     </div>
 </template>
 
@@ -21,32 +25,39 @@
 
     export default {
         name: "game",
-        methods: {
 
-        },
-        components:{
+        components: {
             img3d
         },
-        props:{
-            hide:Boolean
+        props: {
+            hide: Boolean
         },
         data() {
             return {
-
-                img:require('@/assets/t1.png'),
-                isshow:false,
+                target_img: '',//点击查看的图片
+                target_url: '',//点击查看的url
+                img: require('@/assets/t1.png'),
+                isshow: false,
                 //item 光球的尺寸
-                sizeList:[],
-                item:[
+                item: [
                     {
-                        title:'',//标题
-                        img:'',//图片背景
-                        size:'',//光球尺寸
+                        title: '',//标题
+                        img: '',//图片背景
+                        size: '',//光球尺寸
                     }
                 ],
             }
         },
-        mounted:function () {
+        methods: {
+            onclickItem: function () {
+                this.$store.state.imgPath = './show1.jpg';
+                this.$store.state.url = "https://www.baidu.com";
+            },
+            hideImg() {
+                this.$store.state.imgPath = '';
+            }
+        },
+        mounted: function () {
             this.isshow = true
         }
     }
@@ -54,7 +65,6 @@
 </script>
 
 <style scoped>
-
 
 
 </style>

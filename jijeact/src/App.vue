@@ -8,16 +8,19 @@
 
                     </game>
                 </div>
+
                 <div class="section ">
                     <photo class="container" :hide="selectIndex==1">
 
                     </photo>
                 </div>
+
                 <div class="section ">
                     <other class="container" :hide="selectIndex==2">
 
                     </other>
                 </div>
+
                 <div class="section ">
                     <movie class="container" :hide="selectIndex==3">
 
@@ -58,7 +61,6 @@
         methods: {
 
         },
-
         mounted:function () {
             //this.$refs.fullpage.api.moveSectionDown()
             let me = this;

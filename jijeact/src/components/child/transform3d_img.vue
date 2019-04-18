@@ -1,7 +1,7 @@
 <template>
     <div class="center">
-        <div id="img">
-            <img  class="" :src="img"/>
+        <div id="img" class="tar" @click="go">
+            <img   :src="$store.state.imgPath"/>
             <div class="size" id="mask"></div>
         </div>
     </div>
@@ -12,10 +12,14 @@
         name: "transform3d_img",
         data(){
             return{
-                img:require('@/assets/show1.jpg'),
+                //img:require('@/assets/show1.jpg'),
             }
         },
+
         methods:{
+            go(){
+                window.open(this.$store.state.url)
+            },
             init(){
                 var height =document.body.clientHeight;
                 var width =document.body.clientWidth;
@@ -26,7 +30,6 @@
                     now_y = 0,
                     light =[0,0],
                     deg = [0,0];
-
                 document.body.addEventListener('mousemove',function (e) {
                     var x = e.offsetX;
                     var y = e.offsetY;
@@ -38,11 +41,9 @@
                     light[1] = Math.abs((y-height/2)/(height/2));
                     ani();
                 })
-
                 //window.requestAnimationFrame(ani);
                 var img = document.getElementById('img');
                 var mask = document.getElementById('mask');
-
                 function ani() {
                     now_x = now_x+(change_x-now_x)*0.15;
                     now_y = now_y+(change_y-now_y)*0.15;
@@ -56,6 +57,7 @@
         },
         mounted:function () {
             this.init();
+            console.log(this.$store.state.imgPath);
         }
     }
 </script>
@@ -73,5 +75,9 @@
         position: absolute;
         top: 0;
         left: 0;
+    }
+
+    .tar{
+        cursor: pointer;
     }
 </style>
