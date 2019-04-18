@@ -5,7 +5,7 @@
             <img class="img" :src="img">
         </div>
         <div class="dot" :class="{'active':hide}">
-            <i>
+            <i class="iball">
                 <b class="dotChild">
 
                 </b>

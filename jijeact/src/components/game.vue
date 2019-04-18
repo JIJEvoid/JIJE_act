@@ -1,11 +1,13 @@
 <!--todo 游戏模块 page1-->
 <template>
     <div style="width: 100%;height: 100%;">
+
         <div class="txt left" :class="{'active':hide}">
             <img class="img" :src="img">
         </div>
+
         <div class="dot" :class="{'active':hide}" @click.self="hideImg">
-            <i @click="onclickItem()" v-for="(item,index) in itemList" :key="index">
+            <i class="iball" :title="item.title" @click="onclickItem()" :style="{width:item.size+'px',height:item.size+'px',top:item.top+'px',left:item.left}" v-for="(item,index) in itemList" :key="index">
                 <b class="dotChild">
 
                 </b>
@@ -40,9 +42,11 @@
                 //item 光球的尺寸
                 itemList: [
                     {
-                        title: '',//标题
+                        title: '侠客天涯路',//标题
                         img: '',//图片背景
-                        size: '',//光球尺寸
+                        size: parseInt(Math.random()*15)+25,//光球尺寸
+                        left: 20*Math.random()+'%',
+                        top: 20*Math.random()+'%',
                     }
                 ],
             }

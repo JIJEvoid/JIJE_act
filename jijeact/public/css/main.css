@@ -18,7 +18,7 @@
     }
 }
 
-i{
+.iball{
     position: absolute;
     width: 40px;
     height: 40px;
@@ -29,7 +29,7 @@ i{
 
 }
 
-i:hover{
+.iball:hover{
     transform: scale(3);
 }
 
