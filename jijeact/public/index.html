@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>几介</title>
-    <link rel="stylesheet" href="css/main.css">
+
     <script type="x-shader/x-vertex" id="vertexshader">
 		attribute float size;
 		attribute vec3 position2;
@@ -113,10 +113,16 @@
     <script src="./index.js"></script>
     <link rel="stylesheet" href="css/fullpage.min.css">
     <script src="lib/fullpage.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+
 
 </head>
 <body>
-<div id="app"></div>
+<div id="app" class="webglyes resloaded introed fp-viewing-g fadeloading hideloading" style="overflow: hidden; height: 100%;    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;font-family: Helvetica,STHeiti,'Droid Sans Fallback';
+    line-height: 1.5;"></div>
 <noscript>
 
     <strong>We're sorry but jijeact doesn't work properly without JavaScript enabled. Please enable it to

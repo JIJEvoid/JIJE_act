@@ -164,22 +164,6 @@ class ThreeDWorld {
             }
             return obj;
         }
-        // 监听键盘事件
-        document.onkeyup=(e)=>{
-            e=e||window.event;
-            e.preventDefault();
-            if(e.keyCode == 40&&this.pos.val==0){
-                console.log('下键');
-                this.checkNextStep(this.particleSystem,this.pos,'down');
-                this.runTweenByType(this.order);
-
-            }else if(e.keyCode == 38&&this.pos.val==0){
-                console.log('上键');
-                this.checkNextStep(this.particleSystem,this.pos,'up');
-                this.runTweenByType(this.order);
-
-            }
-        }
         // canvas容器内鼠标点击事件添加
         this.container.addEventListener("mousedown", (event) => {
             this.handleRaycasters(event, (objTarget) => {
