@@ -10,11 +10,58 @@ class ThreeDWorld {
         // 模型数量
         this.objLen = 0;
         // 模型文件路径
-        this.modelingFiles =[
+        this.modelingFiles = [
             'obj/robot.fbx',// 雪人 => game
             'obj/cpbook2.json', // book => h5海报
+            'obj/cpac5.json', // bird =>
             'obj/cpmovie4.json', //电影 => 媒体
-            'obj/cpac5.json', // 宝剑 =>
+        ];
+        // 记录每个模型的缩放倍数,旋转角度,位移偏差 todo 第一组为pc端样式 第二组为移动端样式
+        this.transformInfo = [
+            [
+                {
+                    scale: 0.08,
+                    rotate: [-Math.PI / 2, 0, 0],
+                    translate: [50, 0, 0],
+                },
+                {
+                    scale: 80,
+                    rotate: [0, Math.PI / 4, 0],
+                    translate: [-30, 0, 0],
+                },
+                {
+                    scale: 60,
+                    rotate: [0, -Math.PI / 4, 0],
+                    translate: [50, 0, 0],
+                },
+                {
+                    scale: 50,
+                    rotate: [Math.PI / 2, 0, 0],
+                    translate: [-30, 0, 0],
+                },
+            ],
+            [
+                {
+                    scale: 0.08,
+                    rotate: [-Math.PI / 2, 0, 0],
+                    translate: [30, 0, 0],
+                },
+                {
+                    scale: 80,
+                    rotate: [0, Math.PI / 4, 0],
+                    translate: [-30, 0, 0],
+                },
+                {
+                    scale: 60,
+                    rotate: [0, -Math.PI / 4, 0],
+                    translate: [30, 0, 0],
+                },
+                {
+                    scale: 25,
+                    rotate: [Math.PI / 2, 0, 0],
+                    translate: [10, 0, 0],
+                },
+            ],
         ];
     }
 
@@ -28,7 +75,7 @@ class ThreeDWorld {
         // 创建灯光
         this.createLights();
         // 性能监控插件
-        this.initStats();
+        //this.initStats();
         // 鼠标交互事件监听
         this.addMouseListener();
         // 物体添加
@@ -166,6 +213,7 @@ class ThreeDWorld {
             }
             return obj;
         }
+
         // canvas容器内鼠标点击事件添加
         this.container.addEventListener("mousedown", (event) => {
             this.handleRaycasters(event, (objTarget) => {
@@ -199,7 +247,7 @@ class ThreeDWorld {
             })
         });
         // 为所有3D物体添加上“on”方法，可监听物体的“click”、“hover”事件
-        THREE.Object3D.prototype.on = function(eventName, touchCallback, notTouchCallback) {
+        THREE.Object3D.prototype.on = function (eventName, touchCallback, notTouchCallback) {
             switch (eventName) {
                 case "click":
                     this._click = touchCallback ? touchCallback : undefined;
@@ -216,14 +264,14 @@ class ThreeDWorld {
     }
 
     // 切换模型
-    handleSlider(begin,end){
+    handleSlider(begin, end) {
         let dir = ``;
-        if(end>begin){
+        if (end > begin) {
             dir = `down`;
-        }else{
+        } else {
             dir = `up`;
         }
-        this.checkNextStep(this.particleSystem,this.pos,dir);
+        this.checkNextStep(this.particleSystem, this.pos, dir);
         this.runTweenByType(this.order);
     }
 
@@ -270,7 +318,7 @@ class ThreeDWorld {
             pathFomat = path.substring(path.lastIndexOf('.') + 1).toLowerCase();
             switch (pathFomat) {
                 case 'js':
-                    return new Promise(function(resolve) {
+                    return new Promise(function (resolve) {
                         jsonLoader.load(path, (geometry, material) => {
                             resolve({
                                 geometry: geometry,
@@ -280,7 +328,7 @@ class ThreeDWorld {
                     });
                     break;
                 case 'json':
-                    return new Promise(function(resolve) {
+                    return new Promise(function (resolve) {
                         jsonLoader.load(path, (geometry, material) => {
                             resolve({
                                 geometry: geometry,
@@ -290,28 +338,28 @@ class ThreeDWorld {
                     });
                     break;
                 case 'fbx':
-                    return new Promise(function(resolve) {
+                    return new Promise(function (resolve) {
                         fbxLoader.load(path, (object) => {
                             resolve(object);
                         });
                     });
                     break;
                 case 'gltf':
-                    return new Promise(function(resolve) {
+                    return new Promise(function (resolve) {
                         gltfLoader.load(path, (object) => {
                             resolve(object);
                         });
                     });
                     break;
                 case 'obj':
-                    return new Promise(function(resolve) {
+                    return new Promise(function (resolve) {
                         objLoader.load(path, (object) => {
                             resolve(object);
                         });
                     });
                     break;
                 case 'mtl':
-                    return new Promise(function(resolve) {
+                    return new Promise(function (resolve) {
                         mtlLoader.setBaseUrl(basePath);
                         mtlLoader.setPath(basePath);
                         mtlLoader.load(pathName + '.mtl', (mtl) => {
@@ -320,7 +368,7 @@ class ThreeDWorld {
                     });
                     break;
                 case 'objmtl':
-                    return new Promise(function(resolve, reject) {
+                    return new Promise(function (resolve, reject) {
                         mtlLoader.setBaseUrl(basePath);
                         mtlLoader.setPath(basePath);
                         mtlLoader.load(`${pathName}.mtl`, (mtl) => {
@@ -332,7 +380,7 @@ class ThreeDWorld {
                     });
                     break;
                 case 'stl':
-                    return new Promise(function(resolve, reject) {
+                    return new Promise(function (resolve, reject) {
                         stlLoader.load(path, (geometry, material) => {
                             resolve({
                                 geometry: geometry,
@@ -348,38 +396,39 @@ class ThreeDWorld {
         return Promise.all(promiseArr);
     }
 
+    IsPC(){
+        var userAgentInfo = navigator.userAgent;
+        var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");
+        var flag = true;
+        for (var v = 0; v < Agents.length; v++) {
+            if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }
+        }
+        return flag;
+    }
+
     // 模型加入场景
     addObjs() {
         this.loader(this.modelingFiles).then((result) => {
-            console.log(result);
+            let objs = [];
+            if(this.IsPC())this.transformInfo = this.transformInfo[0];
+            else this.transformInfo = this.transformInfo[1];
 
-            // 雪人 right
-            let robot = result[0].children[1].geometry;
-            robot.scale(0.08, 0.08, 0.08);
-            robot.rotateX(-Math.PI / 2);
-            robot.translate(50,0,0);//设定模型位置
+            objs[0] = result[0].children[1].geometry;
+            objs[1] = result[1].geometry;
+            objs[2] = result[2].geometry;
+            objs[3] = result[3].geometry;
 
-            // 书 left
-            let vertices1 = result[1].geometry;
-            vertices1.scale(80,80,80);
-            vertices1.center();
-            vertices1.translate(-30,0,0);//设定模型位置
-            vertices1.rotateY(Math.PI / 4);
+            for (var i = 0; i < objs.length; i++) {
+                objs[i].scale(this.transformInfo[i].scale, this.transformInfo[i].scale, this.transformInfo[i].scale);
+                objs[i].center();
+                objs[i].rotateX(this.transformInfo[i].rotate[0]);
+                objs[i].rotateY(this.transformInfo[i].rotate[1]);
+                objs[i].rotateZ(this.transformInfo[i].rotate[2]);
+                objs[i].translate(this.transformInfo[i].translate[0], this.transformInfo[i].translate[1], this.transformInfo[i].translate[2]);
 
-            // 小鸟 left
-            let vertices2 = result[3].geometry;
-            vertices2.scale(50,50,50);
-            vertices2.center();
-            vertices2.translate(50,0,0);//设定模型位置
-            vertices2.rotateY(-Math.PI / 4);
+            }
 
-            // 影标 right
-            let vertices3 = result[2].geometry;
-            vertices3.scale(45,45,45);
-            vertices3.center();
-            vertices3.translate(-30,0,0);//设定模型位置
-            vertices3.rotateX(Math.PI / 2);
-            this.addPartices([robot,vertices1,vertices2,vertices3]);
+            this.addPartices(objs);
         });
     }
 
@@ -392,12 +441,12 @@ class ThreeDWorld {
     // 获取顶点数最多的item
     getMaxItem(arr) {
         let present = null;
-        for(var i=0;i<arr.length;i++){
-            if(present){
-                if(arr[i].attributes.position.array.length>=present.attributes.position.array.length){
+        for (var i = 0; i < arr.length; i++) {
+            if (present) {
+                if (arr[i].attributes.position.array.length >= present.attributes.position.array.length) {
                     present = arr[i]
                 }
-            }else if(!present){
+            } else if (!present) {
                 present = arr[i]
             }
         }
@@ -407,9 +456,10 @@ class ThreeDWorld {
     // 粒子变换
     addPartices(objlist) {
 
-        for(var i=0;i<objlist.length;i++){
+        for (var i = 0; i < objlist.length; i++) {
             objlist[i] = this.toBufferGeometry(objlist[i]);
         }
+
         this.objLen = objlist.length;//设定模型数量 == 页面数
 
         //顶点数由大到小排序
@@ -419,9 +469,9 @@ class ThreeDWorld {
         let moreLen = morePos.length;
 
         let positionArr = [];
-        for(var i=0;i<objlist.length;i++){
+        for (var i = 0; i < objlist.length; i++) {
             let lessPos = objlist[i].attributes.position.array;
-            let position = this.createParticleArray(moreLen,lessPos);
+            let position = this.createParticleArray(moreLen, lessPos);
             positionArr.push(position);
         }
 
@@ -430,11 +480,7 @@ class ThreeDWorld {
         let beginposition = new Float32Array(moreLen);
         for (let i = 0; i < moreLen; i++) {
             sizes[i] = 4;
-            beginposition[i] = (Math.random()*2000-1000);
-        }
-
-        for (var i=0;i<moreLen;i++){
-
+            beginposition[i] = (Math.random() * 2000 - 1000);
         }
 
         // 挂载属性值
@@ -462,10 +508,10 @@ class ThreeDWorld {
             val: {
                 value: 1.0
             },
-            begin:{
-                value : 0 //转变前的模型id
+            begin: {
+                value: 0 //转变前的模型id
             },
-            end:{
+            end: {
                 value: 0 //转变目标模型id
             }
         };
@@ -482,18 +528,18 @@ class ThreeDWorld {
 
         // 创建粒子系统
         let particleSystem = new THREE.Points(moreObj, shaderMaterial);
-        let pos = { val: 1 };
+        let pos = {val: 1};
         this.particleSystem = particleSystem;
         this.pos = pos;
 
         // 粒子动画
         let tween = new TWEEN.Tween(pos).to({
             val: 0
-        }, this.pos.val*1500).easing(TWEEN.Easing.Quadratic.InOut).onUpdate(updateCallback.bind(this, null)).onComplete(completeCallBack.bind(this, 'go'));
+        }, this.pos.val * 1500).easing(TWEEN.Easing.Quadratic.InOut).onUpdate(updateCallback.bind(this, null)).onComplete(completeCallBack.bind(this, 'go'));
 
         let tweenBack = new TWEEN.Tween(pos).to({
             val: 0
-        }, this.pos.val*1500).easing(TWEEN.Easing.Quadratic.InOut).onUpdate(updateCallback.bind(this, null)).onComplete(completeCallBack.bind(this, 'back'));
+        }, this.pos.val * 1500).easing(TWEEN.Easing.Quadratic.InOut).onUpdate(updateCallback.bind(this, null)).onComplete(completeCallBack.bind(this, 'back'));
 
         //将这两个缓动形式保存起来,相互调用
         this.tweenInstance1 = tween;
@@ -516,16 +562,16 @@ class ThreeDWorld {
                 uColor.b = this.color.b + (this.nextcolor.b - this.color.b) * val;
                 uColor.g = this.color.g + (this.nextcolor.g - this.color.g) * val;*/
 
-                uColor.r = this.color.r*val + (this.nextcolor.r) * (1-val);
-                uColor.b = this.color.b*val + (this.nextcolor.b) * (1-val);
-                uColor.g = this.color.g*val + (this.nextcolor.g) * (1-val);
+                uColor.r = this.color.r * val + (this.nextcolor.r) * (1 - val);
+                uColor.b = this.color.b * val + (this.nextcolor.b) * (1 - val);
+                uColor.g = this.color.g * val + (this.nextcolor.g) * (1 - val);
             }
         }
 
         // 每轮动画完成时的回调函数
         function completeCallBack(order) {
-            if(!this.isInit){
-                this.isInit =!this.isInit;
+            if (!this.isInit) {
+                this.isInit = !this.isInit;
                 window.vm.selectIndex = 0;
             }
             let uColor = particleSystem.material.uniforms.color.value;
@@ -539,27 +585,28 @@ class ThreeDWorld {
             }
             // 随机生成将要变换后的粒子颜色
             this.nextcolor = {
-                r: Math.random()*0.5,
-                b: Math.random()*0.5,
-                g: Math.random()*0.5
+                r: Math.random() * 0.5,
+                b: Math.random() * 0.5,
+                g: Math.random() * 0.5
             }
         }
+
         this.scene.add(particleSystem);
         this.particleSystem = particleSystem;
     }
 
     // 执行下一个缓动函数
     runTweenByType(type) {
-        if(type=='go'){
+        if (type == 'go') {
             this.tweenInstance2.start();
         }
-        else{
+        else {
             this.tweenInstance1.start();
         }
     }
 
     // 创建顶点信息描述文件
-    createParticleArray(moreLen,lessPos) {
+    createParticleArray(moreLen, lessPos) {
         // 根据最大的顶点数开辟数组空间，同于存放顶点较少的模型顶点数据
         let position2 = new Float32Array(moreLen);
 
@@ -579,26 +626,26 @@ class ThreeDWorld {
     }
 
     // 判断下一个模型应该如何变化
-    checkNextStep(particleSystem,pos,direction='down') {
-        if(direction==`down`){
-            if(particleSystem.material.uniforms.end.value == this.objLen-1){
+    checkNextStep(particleSystem, pos, direction = 'down') {
+        if (direction == `down`) {
+            if (particleSystem.material.uniforms.end.value == this.objLen - 1) {
                 //缓动执行完毕,
-                if(pos.val==0)particleSystem.material.uniforms.begin.value = particleSystem.material.uniforms.end.value;
+                if (pos.val == 0) particleSystem.material.uniforms.begin.value = particleSystem.material.uniforms.end.value;
                 particleSystem.material.uniforms.end.value = 0;
-            }else{
-                if(pos.val==0)particleSystem.material.uniforms.begin.value = particleSystem.material.uniforms.end.value;
-                particleSystem.material.uniforms.end.value = particleSystem.material.uniforms.end.value+1;
+            } else {
+                if (pos.val == 0) particleSystem.material.uniforms.begin.value = particleSystem.material.uniforms.end.value;
+                particleSystem.material.uniforms.end.value = particleSystem.material.uniforms.end.value + 1;
             }
-        }else{
-            if(particleSystem.material.uniforms.end.value == 0){
+        } else {
+            if (particleSystem.material.uniforms.end.value == 0) {
                 particleSystem.material.uniforms.begin.value = 0;
-                particleSystem.material.uniforms.end.value = this.objLen-1;
-            }else{
+                particleSystem.material.uniforms.end.value = this.objLen - 1;
+            } else {
                 particleSystem.material.uniforms.begin.value = particleSystem.material.uniforms.end.value;
-                particleSystem.material.uniforms.end.value = particleSystem.material.uniforms.end.value-1;
+                particleSystem.material.uniforms.end.value = particleSystem.material.uniforms.end.value - 1;
             }
         }
-        if(pos.val==0)pos.val = particleSystem.material.uniforms.val.value = 1;
+        if (pos.val == 0) pos.val = particleSystem.material.uniforms.val.value = 1;
     }
 
     // 获得纹理
@@ -623,7 +670,7 @@ class ThreeDWorld {
     // 更新视图
     update() {
         TWEEN.update();
-        this.stats.update();
+        //this.stats.update();
         let time = Date.now() * 0.005;
         if (this.particleSystem) {
             let bufferObj = this.particleSystem.geometry;

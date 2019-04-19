@@ -1,19 +1,19 @@
 @keyframes dotanm {
     0% {
-        -webkit-transform: scale(1) translateX(5px) translateY(5px);
-        transform: scale(1) translateX(15px) translateY(15px);
+        -webkit-transform: scale(1) translateX(0px) translateY(0px);
+        transform: scale(1) translateX(0px) translateY(0px);
         opacity: .9;
     }
 
     50% {
-        -webkit-transform: scale(1.5) translateX(-5px) translateY(-5px);
-        transform: scale(1.5) translateX(-15px) translateY(-15px);
+        -webkit-transform: scale(1.5) translateX(-30px) translateY(-30px);
+        transform: scale(1.5) translateX(-30px) translateY(-30px);
         opacity: 1;
     }
 
     100% {
-        -webkit-transform: scale(1) translateX(5px) translateY(5px);
-        transform: scale(1) translateX(15px) translateY(15px);
+        -webkit-transform: scale(1) translateX(0px) translateY(0px);
+        transform: scale(1) translateX(0px) translateY(0px);
         opacity: .9;
     }
 }

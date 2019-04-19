@@ -1,43 +1,127 @@
 <!--todo 其他模块-->
 <template>
+
     <div style="width: 100%;height: 100%;">
-        <div class="txt left" :class="{'active':hide}">
+
+        <div class="txt left" :style="{width:imgWidth}" :class="{'active':hide}">
             <img class="img" :src="img">
         </div>
-        <div class="dot" :class="{'active':hide}">
-            <i class="iball">
-                <b class="dotChild">
+
+        <div class="dot" :class="{'active':hide}" @click.self="hideImg">
+            <i class="iball" :title="item.title" @click="onclickItem(item)" :style="{width:item.size+'px',height:item.size+'px',top:item.top+'%',left:item.left+'%'}" v-for="(item,index) in itemList" :key="index">
+                <b class="dotChild" :style="{animationDuration:item.duration,animationDelay:item.delay}">
 
                 </b>
             </i>
-
         </div>
+
+        <transition name="slide-fade">
+            <img3d v-if="$store.state.imgPath"></img3d>
+        </transition>
+
     </div>
+
 </template>
 
 <script>
-    export default {
-        name: "other",methods: {
+    import img3d from './child/transform3d_img'
 
+    export default {
+        name: "other",
+
+        components: {
+            img3d
         },
-        props:{
-            hide:Boolean
+        props: {
+            hide: Boolean
         },
         data() {
             return {
-                img:require('@/assets/t3.png'),
+                target_img: '',//点击查看的图片
+                target_url: '',//点击查看的url
+                img: require('@/assets/t3.png'),
+                isshow: false,
                 //item 光球的尺寸
-                sizeList:[],
-                item:[
+                itemList: [
                     {
-                        title:'',//标题
-                        img:'',//图片背景
-                        size:'',//光球尺寸
-                    }
+                        title: '侠客天涯路',//标题
+                        img: './show1.jpg',//图片背景
+                        url:'https://www.baidu.com',
+                        size: parseInt(Math.random()*20)+30,//光球尺寸
+                        left: 20,
+                        top: 20,
+                        duration: parseInt(2*Math.random()+6)+'s',//持续时间
+                        delay: parseInt(3*Math.random())+'s',//延迟时间
+
+                    },
+                    {
+                        title: '侠客天涯路',//标题
+                        img: './show1.jpg',//图片背景
+                        url:'https://www.baidu.com',
+                        size: parseInt(Math.random()*20)+30,//光球尺寸
+                        left: 16,
+                        top: 25,
+                        duration: parseInt(2*Math.random()+6)+'s',//持续时间
+                        delay: parseInt(3*Math.random())+'s',//延迟时间
+                    },
+                    {
+                        title: '侠客天涯路',//标题
+                        img: './show1.jpg',//图片背景
+                        url:'https://www.baidu.com',
+                        size: parseInt(Math.random()*20)+30,//光球尺寸
+                        left: 30,
+                        top: 51,
+                        duration: parseInt(2*Math.random()+6)+'s',//持续时间
+                        delay: parseInt(3*Math.random())+'s',//延迟时间
+                    },
+                    {
+                        title: '侠客天涯路',//标题
+                        img: './show1.jpg',//图片背景
+                        url:'https://www.baidu.com',
+                        size: parseInt(Math.random()*20)+30,//光球尺寸
+                        left: 40,
+                        top: 28,
+                        duration: parseInt(2*Math.random()+6)+'s',//持续时间
+                        delay: parseInt(3*Math.random())+'s',//延迟时间
+                    },
+                    {
+                        title: '侠客天涯路',//标题
+                        img: './show1.jpg',//图片背景
+                        url:'https://www.baidu.com',
+                        size: parseInt(Math.random()*20)+30,//光球尺寸
+                        left: 10,
+                        top: 61,
+                        duration: parseInt(2*Math.random()+6)+'s',//持续时间
+                        delay: parseInt(3*Math.random())+'s',//延迟时间
+                    },
+
+
                 ],
             }
         },
+        methods: {
+            onclickItem: function (item) {
+                this.$store.state.imgPath = item.img;
+                this.$store.state.url = item.url;
+            },
+            hideImg() {
+                this.$store.state.imgPath = '';
+            }
+        },
+        computed:{
+            imgWidth:function(){
+                if(window.innerHeight>window.innerWidth){
+                    return `50%`;
+                }else{
+                    return `30%`;
+                }
+            }
+        },
+        mounted: function () {
+            this.isshow = true
+        }
     }
+
 </script>
 
 <style scoped>

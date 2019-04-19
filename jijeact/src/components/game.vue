@@ -3,13 +3,13 @@
 
     <div style="width: 100%;height: 100%;">
 
-        <div class="txt left" :class="{'active':hide}">
+        <div class="txt left" :style="{width:imgWidth}" :class="{'active':hide}">
             <img class="img" :src="img">
         </div>
 
         <div class="dot" :class="{'active':hide}" @click.self="hideImg">
-            <i class="iball" :title="item.title" @click="onclickItem(item)" :style="{width:item.size+'px',height:item.size+'px',top:item.top+'px',left:item.left}" v-for="(item,index) in itemList" :key="index">
-                <b class="dotChild">
+            <i class="iball" :title="item.title" @click="onclickItem(item)" :style="{width:item.size+'px',height:item.size+'px',top:item.top+'%',left:item.left+'%'}" v-for="(item,index) in itemList" :key="index">
+                <b class="dotChild" :style="{animationDuration:item.duration,animationDelay:item.delay}">
 
                 </b>
             </i>
@@ -47,10 +47,55 @@
                         title: '侠客天涯路',//标题
                         img: './show1.jpg',//图片背景
                         url:'https://www.baidu.com',
-                        size: parseInt(Math.random()*15)+25,//光球尺寸
-                        left: 20*Math.random()+'%',
-                        top: 20*Math.random()+'%',
-                    }
+                        size: parseInt(Math.random()*20)+30,//光球尺寸
+                        left: 20,
+                        top: 20,
+                        duration: parseInt(2*Math.random()+6)+'s',//持续时间
+                        delay: parseInt(3*Math.random())+'s',//延迟时间
+
+                    },
+                    {
+                        title: '侠客天涯路',//标题
+                        img: './show1.jpg',//图片背景
+                        url:'https://www.baidu.com',
+                        size: parseInt(Math.random()*20)+30,//光球尺寸
+                        left: 16,
+                        top: 25,
+                        duration: parseInt(2*Math.random()+6)+'s',//持续时间
+                        delay: parseInt(3*Math.random())+'s',//延迟时间
+                    },
+                    {
+                        title: '侠客天涯路',//标题
+                        img: './show1.jpg',//图片背景
+                        url:'https://www.baidu.com',
+                        size: parseInt(Math.random()*20)+30,//光球尺寸
+                        left: 30,
+                        top: 51,
+                        duration: parseInt(2*Math.random()+6)+'s',//持续时间
+                        delay: parseInt(3*Math.random())+'s',//延迟时间
+                    },
+                    {
+                        title: '侠客天涯路',//标题
+                        img: './show1.jpg',//图片背景
+                        url:'https://www.baidu.com',
+                        size: parseInt(Math.random()*20)+30,//光球尺寸
+                        left: 40,
+                        top: 28,
+                        duration: parseInt(2*Math.random()+6)+'s',//持续时间
+                        delay: parseInt(3*Math.random())+'s',//延迟时间
+                    },
+                    {
+                        title: '侠客天涯路',//标题
+                        img: './show1.jpg',//图片背景
+                        url:'https://www.baidu.com',
+                        size: parseInt(Math.random()*20)+30,//光球尺寸
+                        left: 10,
+                        top: 61,
+                        duration: parseInt(2*Math.random()+6)+'s',//持续时间
+                        delay: parseInt(3*Math.random())+'s',//延迟时间
+                    },
+
+
                 ],
             }
         },
@@ -63,6 +108,15 @@
                 this.$store.state.imgPath = '';
             }
         },
+        computed:{
+            imgWidth:function(){
+                if(window.innerHeight>window.innerWidth){
+                    return `50%`;
+                }else{
+                    return `30%`;
+                }
+            }
+        },
         mounted: function () {
             this.isshow = true
         }
@@ -71,6 +125,5 @@
 </script>
 
 <style scoped>
-
 
 </style>

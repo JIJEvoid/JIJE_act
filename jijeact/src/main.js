@@ -1,14 +1,17 @@
 import Vue from 'vue'
 import App from './App'
 import Vuex from 'vuex'
+import tools from './utils/tools'
 
 Vue.config.productionTip = false;
 Vue.use(Vuex);
+Vue.prototype.$tools = tools;
 
 const store = new Vuex.Store({
     state: {
         imgPath: '',//target img src
         url: '', //target url
+        OS:'pc',//mobile
     },
 });
 

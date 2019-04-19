@@ -1,7 +1,7 @@
 <template>
     <div class="center">
         <div id="img" class="tar" @click="go">
-            <img   :src="$store.state.imgPath"/>
+            <img :src="$store.state.imgPath" :style="{maxHeight:maxheight}"/>
             <div class="size" id="mask"></div>
         </div>
     </div>
@@ -55,9 +55,16 @@
                 }
             }
         },
+
         mounted:function () {
             this.init();
             console.log(this.$store.state.imgPath);
+        },
+
+        computed:{
+            maxheight:function () {
+                return (window.innerHeight*0.7)+'px';
+            }
         }
     }
 </script>
