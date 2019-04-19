@@ -21,7 +21,7 @@ class ThreeDWorld {
             [
                 {
                     scale: 0.08,
-                    rotate: [-Math.PI / 2, 0, 0],
+                    rotate: [-Math.PI / 2, -Math.PI, 0],
                     translate: [50, 0, 0],
                 },
                 {
@@ -36,7 +36,7 @@ class ThreeDWorld {
                 },
                 {
                     scale: 50,
-                    rotate: [Math.PI / 2, 0, 0],
+                    rotate: [Math.PI / 2, Math.PI / 4, 0],
                     translate: [-30, 0, 0],
                 },
             ],
@@ -58,8 +58,8 @@ class ThreeDWorld {
                 },
                 {
                     scale: 25,
-                    rotate: [Math.PI / 2, 0, 0],
-                    translate: [10, 0, 0],
+                    rotate: [Math.PI / 2, Math.PI / 4, 0],
+                    translate: [0, -10, 0],
                 },
             ],
         ];
@@ -410,6 +410,7 @@ class ThreeDWorld {
     addObjs() {
         this.loader(this.modelingFiles).then((result) => {
             let objs = [];
+            //pc环境加载第一套样式 mobiles走第二套样式
             if(this.IsPC())this.transformInfo = this.transformInfo[0];
             else this.transformInfo = this.transformInfo[1];
 
@@ -573,6 +574,7 @@ class ThreeDWorld {
             if (!this.isInit) {
                 this.isInit = !this.isInit;
                 window.vm.selectIndex = 0;
+                window.vm.createFullpage();
             }
             let uColor = particleSystem.material.uniforms.color.value;
             // 保存动画顺序状态

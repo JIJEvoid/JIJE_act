@@ -30,10 +30,16 @@
             </div>
         </div>
 
-        <div id="world" style="position: absolute;width: 100vw;height: 100vh;top: 0;left: 0;z-index: 99">
+        <div id="world" style="position: absolute;width: 100vw;height: 100vh;top: 0;left: 0;z-index: 1">
 
         </div>
-        <img :src="img.logo" style="position: absolute;top: 0;left: 0;z-index: 999" alt="">
+
+        <div v-cloak class="mouse" v-show="isInit">
+            <div class="outline"></div>
+            <div class="wheel"></div>
+        </div>
+
+        <img :src="img.logo" style="position: absolute;top: 0;left: 0;z-index: 100" alt="">
     </div>
 
 </template>
@@ -49,6 +55,7 @@
         name: 'app',
         data: function () {
             return {
+                isInit:false,
                 selectIndex: -1,
                 orienter: null,
                 self: {
@@ -129,28 +136,28 @@
                     window.three.particleSystem.rotation.y = this.target.z / 10;
                 }
 
-            }
+            },
 
+            // 创建fullpage
+            createFullpage:function () {
+                if(this.$store.state.OS=='pc')this.isInit = true;
+                let me = this;
+                new window.fullpage('#fullpage', {
+                    //options here
+                    autoScrolling: true,
+                    licensekey: 'open-source-gplv3-license',
+                    scrollHorizontally: true,
+                    onLeave: function (origin, destination) {
+                        window.three.handleSlider(origin.index, destination.index);
+                        me.selectIndex = destination.index;
+                    },
+                    scrollingSpeed: 1800,
+                });
+            }
         },
 
         mounted: function () {
-            //this.$refs.fullpage.api.moveSectionDown()
-            let me = this;
-            new window.fullpage('#fullpage', {
-                //options here
-                autoScrolling: true,
-                licensekey: 'open-source-gplv3-license',
-                scrollHorizontally: true,
-                onLeave: function (origin, destination) {
-                    window.three.handleSlider(origin.index, destination.index);
-                    me.selectIndex = destination.index;
-                },
-
-                scrollingSpeed: 1800,
-            });
-
             window.onLoad();
-
         },
 
         created: function () {
@@ -184,4 +191,40 @@
         width: 100vw;
     }
 
+    .mouse{
+        position: fixed;
+        left: 50%;
+        bottom: 20px;
+        width: 50px;
+        height: 68px;
+        z-index: 100;
+        margin-top: -47px;
+        margin-left: -23px;
+        pointer-events: none;
+        transition: opacity 3s 3s;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .mouse .outline {
+        background-position: -122px 0px;
+        width: 40px;
+        height: 76px;
+        opacity: .7;
+        background-repeat: no-repeat;
+        background-image: url('./assets/sprite.png');
+
+    }
+
+    .mouse .wheel {
+        background-position: 0px -184px;
+        width: 8px;
+        height: 12px;
+        position: absolute;
+        top: 1px;
+        left: 16px;
+        -webkit-animation: mousewheel 2s 2s infinite;
+        animation: mousewheel 2s 2s infinite;
+        background-repeat: no-repeat;
+        background-image: url(//game.gtimg.cn/images/up/act/a20170301pre/images/up2017pre_z.png);
+    }
 </style>
