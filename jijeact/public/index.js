@@ -21,8 +21,8 @@ class ThreeDWorld {
             [
                 {
                     scale: 0.08,
-                    rotate: [-Math.PI / 2, -Math.PI, 0],
-                    translate: [50, 0, 0],
+                    rotate: [-Math.PI / 2, 0, 0],
+                    translate: [50, 0, 20],
                 },
                 {
                     scale: 80,
@@ -35,8 +35,8 @@ class ThreeDWorld {
                     translate: [50, 0, 0],
                 },
                 {
-                    scale: 50,
-                    rotate: [Math.PI / 2, Math.PI / 4, 0],
+                    scale: 40,
+                    rotate: [Math.PI / 2, Math.PI / 8, 0],
                     translate: [-30, 0, 0],
                 },
                 {
@@ -111,7 +111,7 @@ class ThreeDWorld {
         // 创建场景
         this.scene = new THREE.Scene();
         // 在场景中添加雾的效果，参数分别代表‘雾的颜色’、‘开始雾化的视线距离’、刚好雾化至看不见的视线距离’
-        this.scene.fog = new THREE.Fog(0x090918, 1, 600);
+        this.scene.fog = new THREE.Fog(0x090918, 100, 600);
         // 创建相机
         let aspectRatio = this.WIDTH / this.HEIGHT;
         let fieldOfView = 60;
@@ -420,7 +420,7 @@ class ThreeDWorld {
     }
 
     createText(){
-        var text = "JIJE VOID",
+        var text = "JIJE void",
             height = 20,
             size = 50,
             hover = 30,

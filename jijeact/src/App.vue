@@ -30,29 +30,38 @@
                 </div>
 
                 <div class="section ">
-                    <photo class="container" :hide="selectIndex==4">
+                    <me class="container" :hide="selectIndex==4">
 
-                    </photo>
+                    </me>
                 </div>
 
             </div>
+
+            <transition name="slide-fade">
+                <img3d v-if="$store.state.imgPath" style=""></img3d>
+            </transition>
+
         </div>
+
 
         <div id="world" style="position: absolute;width: 100vw;height: 100vh;top: 0;left: 0;z-index: 1">
 
         </div>
 
+        <transition name="fade">
         <div v-cloak class="mouse" v-show="isInit">
             <div class="outline"></div>
             <div class="wheel"></div>
         </div>
+        </transition>
 
-        <div v-cloak class="mouse" v-show="isInit">
-            <div class="outline" style=""></div>
-            <div class="wheel"></div>
-        </div>
+        <transition name="fade">
+        <img :src="img.logo" v-show="isInit" style="position: absolute;top: 35px;left: 55px;z-index: 100;opacity: 0.9" alt="">
+        </transition>
 
-        <img :src="img.logo" style="position: absolute;top: 10px;left: 0;z-index: 100;" alt="">
+
+
+        <audio src="./bgm.mp3" loop="loop" style="visibility: hidden;" autoplay="autoplay"></audio>
 
     </div>
 
@@ -63,6 +72,9 @@
     import photo from './components/photo'
     import movie from './components/movie'
     import other from './components/other'
+    import me from './components/me'
+
+    import img3d from './components/child/transform3d_img'
 
     export default {
         name: 'app',
@@ -93,6 +105,8 @@
             photo,
             movie,
             other,
+            me,
+            img3d
         },
         methods: {
 

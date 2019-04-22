@@ -3,7 +3,7 @@
 
     <div style="width: 100%;height: 100%;">
 
-        <div class="txt right" :style="{width:imgWidth}" :class="{'active':hide}">
+        <div class="txt right" :style="{height:imgHeight}" :class="{'active':hide}">
             <img class="img" :src="img">
         </div>
 
@@ -17,9 +17,6 @@
             </i>
         </div>
 
-        <transition name="slide-fade">
-            <img3d v-if="$store.state.imgPath"></img3d>
-        </transition>
 
     </div>
 
@@ -108,11 +105,11 @@
             }
         },
         computed:{
-            imgWidth:function(){
+            imgHeight:function(){
                 if(window.innerHeight>window.innerWidth){
-                    return `50%`;
+                    return `15%`;
                 }else{
-                    return `30%`;
+                    return `15%`;
                 }
             }
         },
