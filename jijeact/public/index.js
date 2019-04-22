@@ -39,6 +39,11 @@ class ThreeDWorld {
                     rotate: [Math.PI / 2, Math.PI / 4, 0],
                     translate: [-30, 0, 0],
                 },
+                {
+                    scale: 0.4,
+                    rotate: [0, 0 , 0],
+                    translate: [0, 0, 0],
+                },
             ],
             [
                 {
@@ -61,8 +66,16 @@ class ThreeDWorld {
                     rotate: [Math.PI / 2, Math.PI / 4, 0],
                     translate: [0, -10, 0],
                 },
+                {
+                    scale: 0.2,
+                    rotate: [0,0, 0],
+                    translate: [0, -0, 0],
+                },
             ],
         ];
+
+        //jijevoid 模型
+        this.textMesh = null;
     }
 
     constructor(canvasContainer) {
@@ -78,8 +91,8 @@ class ThreeDWorld {
         //this.initStats();
         // 鼠标交互事件监听
         this.addMouseListener();
-        // 物体添加
-        this.addObjs();
+        // 添加logo文字模型
+        this.createText();
         // 轨道控制插件（鼠标拖拽视角、缩放等）
         /*this.orbitControls = new THREE.OrbitControls(this.camera);
         this.orbitControls.autoRotate = true;
@@ -406,6 +419,65 @@ class ThreeDWorld {
         return flag;
     }
 
+    createText(){
+        var text = "JIJE VOID",
+            height = 20,
+            size = 50,
+            hover = 30,
+            curveSegments = 4,
+            bevelThickness = 2,
+            bevelSize = 1.5,
+            bevelEnabled = true,
+            font = undefined,
+            fontName = "optimer", // helvetiker, optimer, gentilis, droid sans, droid serif
+            fontWeight = "bold"; // normal bold
+
+        var loader = new THREE.FontLoader();
+        var me = this;
+        loader.load( './obj/typeface.json', function ( response ) {
+
+            font = response;
+
+            refreshText();
+
+        } );
+
+        var refreshText =function () {
+            var textGeo = new window.THREE.TextGeometry( text, {
+                font: font,
+                size: size,
+                height: height,
+                curveSegments: curveSegments,
+                bevelThickness: bevelThickness,
+                bevelSize: bevelSize,
+                bevelEnabled: bevelEnabled
+            });
+
+            textGeo.computeBoundingBox();
+
+            textGeo.computeVertexNormals();
+
+            var materials = [
+                new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } ), // front
+                new THREE.MeshPhongMaterial( { color: 0xffffff } ) // side
+            ];
+
+            var centerOffset = - 0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
+            textGeo = new THREE.BufferGeometry().fromGeometry( textGeo );
+            var textMesh1 = new THREE.Mesh( textGeo, materials );
+            textMesh1.position.x = centerOffset;
+            textMesh1.position.y = hover;
+            textMesh1.position.z = 0;
+            textMesh1.rotation.x = 0;
+            textMesh1.rotation.y = Math.PI * 2;
+
+            me.textMesh = textMesh1;
+            console.log(`text mesh`);
+            console.log(me.textMesh);
+            me.addObjs();
+        }
+    }
+
     // 模型加入场景
     addObjs() {
         this.loader(this.modelingFiles).then((result) => {
@@ -418,6 +490,7 @@ class ThreeDWorld {
             objs[1] = result[1].geometry;
             objs[2] = result[2].geometry;
             objs[3] = result[3].geometry;
+            objs[4] = this.textMesh.geometry;
 
             for (var i = 0; i < objs.length; i++) {
                 objs[i].scale(this.transformInfo[i].scale, this.transformInfo[i].scale, this.transformInfo[i].scale);
@@ -461,6 +534,7 @@ class ThreeDWorld {
             objlist[i] = this.toBufferGeometry(objlist[i]);
         }
 
+        console.log(objlist)
         this.objLen = objlist.length;//设定模型数量 == 页面数
 
         //顶点数由大到小排序
@@ -493,6 +567,7 @@ class ThreeDWorld {
         moreObj.addAttribute('position2', new THREE.BufferAttribute(positionArr[1], 3));
         moreObj.addAttribute('position3', new THREE.BufferAttribute(positionArr[2], 3));
         moreObj.addAttribute('position4', new THREE.BufferAttribute(positionArr[3], 3));
+        moreObj.addAttribute('position5', new THREE.BufferAttribute(positionArr[4], 3));
         console.log(moreObj);
         // 传递给shader共享的的属性值
         let uniforms = {

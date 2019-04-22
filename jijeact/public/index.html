@@ -16,6 +16,7 @@
 		attribute vec3 position2;
 		attribute vec3 position3;
 		attribute vec3 position4;
+		attribute vec3 position5;
 
 		attribute vec3 beginposition;
 
@@ -51,6 +52,9 @@
 			else if(begin == 3){
 				beforeposition = position4;
 			}
+			else if(begin == 4){
+				beforeposition = position5;
+			}
 			else if(begin == 99){
 				beforeposition = beginposition;
 			}
@@ -66,6 +70,9 @@
 			}
 			else if(end == 3){
 				afterposition = position4;
+			}
+			else if(end == 4){
+				afterposition = position5;
 			}
 
 			vPos.x = beforeposition.x * val + afterposition.x * (1.-val);
@@ -121,7 +128,9 @@
 
     <link rel="stylesheet" href="css/fullpage.min.css">
     <link rel="stylesheet" href="css/main.css">
+
 </head>
+
 <body>
 <div id="app" class="webglyes resloaded introed fp-viewing-g fadeloading hideloading" style="overflow: hidden; height: 100%;    margin: 0;padding: 0;overflow: hidden;-webkit-tap-highlight-color: transparent;font-family: Helvetica,STHeiti,'Droid Sans Fallback';
     line-height: 1.5;"></div>
@@ -134,7 +143,6 @@
 </noscript>
 
 <!-- built files will be auto injected -->
-
 
 </body>
 </html>

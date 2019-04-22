@@ -1,4 +1,5 @@
 <template>
+
     <div>
 
         <div style="position: absolute;width: 100vw;height: 100vh;top: 0;left: 0;z-index: 999;overflow: hidden;">
@@ -28,6 +29,12 @@
                     </movie>
                 </div>
 
+                <div class="section ">
+                    <photo class="container" :hide="selectIndex==4">
+
+                    </photo>
+                </div>
+
             </div>
         </div>
 
@@ -52,7 +59,6 @@
 </template>
 
 <script>
-
     import game from './components/game'
     import photo from './components/photo'
     import movie from './components/movie'
@@ -158,10 +164,10 @@
                         me.selectIndex = destination.index;
                     },
                     scrollingSpeed: 1800,
-                    anchors: ['page1', 'page2', 'page3', 'page4'],
+                    anchors: ['page1', 'page2', 'page3', 'page4','page5',],
                     navigation: true,
                     navigationPosition:'left',
-                    navigationTooltips:['game','idea','other','medie'],
+                    navigationTooltips:['game','idea','other','medie','me'],
                     slidesNavigation:true,
                 });
             },
@@ -169,7 +175,8 @@
             // link指定page
             linkto:function(i){
                 console.log(i);
-            }
+            },
+
         },
 
         mounted: function () {
@@ -181,7 +188,6 @@
             this.checkOS();
             this.initDevices();
         }
-
     }
 </script>
 
@@ -237,7 +243,7 @@
         width: 100vw;
     }
 
-    .mouse{
+    .mouse {
         position: fixed;
         left: 50%;
         bottom: 20px;
@@ -275,4 +281,3 @@
     }
 
 </style>
-`
