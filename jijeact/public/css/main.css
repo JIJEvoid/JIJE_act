@@ -74,8 +74,8 @@
     filter: blur(100px);
     position: absolute;
     top: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     left: 0;
 }
 
@@ -85,16 +85,16 @@
     filter: blur(100px);
     opacity: 0;
     width: 30%;
-    top: 50%;
+    top: 35%;
     position: absolute;
 }
 
 .txt.left {
-    left: 0;
+    left: 30px;
 }
 
 .txt.right {
-    right: 0;
+    right: 30px;
 }
 
 .img {

@@ -271,7 +271,7 @@ class ThreeDWorld {
         } else {
             dir = `up`;
         }
-        this.checkNextStep(this.particleSystem, this.pos, dir);
+        this.checkNextStep(this.particleSystem, this.pos, dir,begin,end);
         this.runTweenByType(this.order);
     }
 
@@ -628,16 +628,20 @@ class ThreeDWorld {
     }
 
     // 判断下一个模型应该如何变化
-    checkNextStep(particleSystem, pos, direction = 'down') {
-        if (direction == `down`) {
-            if (particleSystem.material.uniforms.end.value == this.objLen - 1) {
+    checkNextStep(particleSystem, pos,direction = 'down',b,e) {
+        /*if (direction == `down`) {
+            /!*if (particleSystem.material.uniforms.end.value == this.objLen - 1) {
                 //缓动执行完毕,
                 if (pos.val == 0) particleSystem.material.uniforms.begin.value = particleSystem.material.uniforms.end.value;
                 particleSystem.material.uniforms.end.value = 0;
             } else {
                 if (pos.val == 0) particleSystem.material.uniforms.begin.value = particleSystem.material.uniforms.end.value;
                 particleSystem.material.uniforms.end.value = particleSystem.material.uniforms.end.value + 1;
-            }
+            }*!/
+            particleSystem.material.uniforms.begin.value = b;
+            particleSystem.material.uniforms.end.value = e;
+
+
         } else {
             if (particleSystem.material.uniforms.end.value == 0) {
                 particleSystem.material.uniforms.begin.value = 0;
@@ -646,7 +650,9 @@ class ThreeDWorld {
                 particleSystem.material.uniforms.begin.value = particleSystem.material.uniforms.end.value;
                 particleSystem.material.uniforms.end.value = particleSystem.material.uniforms.end.value - 1;
             }
-        }
+        }*/
+        particleSystem.material.uniforms.begin.value = b;
+        particleSystem.material.uniforms.end.value = e;
         if (pos.val == 0) pos.val = particleSystem.material.uniforms.val.value = 1;
     }
 

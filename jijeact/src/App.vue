@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div style="position: absolute;width: 100vw;height: 100vh;top: 0;left: 0;z-index: 999">
+
+        <div style="position: absolute;width: 100vw;height: 100vh;top: 0;left: 0;z-index: 999;overflow: hidden;">
             <div id="fullpage" style="color: #fff;width: 100vw;height: 100vh;">
 
                 <div class="section">
@@ -39,7 +40,13 @@
             <div class="wheel"></div>
         </div>
 
-        <img :src="img.logo" style="position: absolute;top: 0;left: 0;z-index: 100" alt="">
+        <div v-cloak class="mouse" v-show="isInit">
+            <div class="outline" style=""></div>
+            <div class="wheel"></div>
+        </div>
+
+        <img :src="img.logo" style="position: absolute;top: 10px;left: 0;z-index: 100;" alt="">
+
     </div>
 
 </template>
@@ -82,9 +89,8 @@
             other,
         },
         methods: {
-            /**
-             * todo 判断浏览os
-             */
+
+            // 判断浏览os
             checkOS: function () {
                 if (this.$tools.IsPC) {
                     this.$store.state.OS = `pc`;
@@ -152,7 +158,17 @@
                         me.selectIndex = destination.index;
                     },
                     scrollingSpeed: 1800,
+                    anchors: ['page1', 'page2', 'page3', 'page4'],
+                    navigation: true,
+                    navigationPosition:'left',
+                    navigationTooltips:['game','idea','other','medie'],
+                    slidesNavigation:true,
                 });
+            },
+
+            // link指定page
+            linkto:function(i){
+                console.log(i);
             }
         },
 
@@ -170,6 +186,36 @@
 </script>
 
 <style>
+    #myMenu{
+        position: absolute;top: 0;left: 0;z-index: 100;
+        color: #fff;
+    }
+
+    .section {
+        text-align: center; font: 50px "Microsoft Yahei"; color: #fff;
+    }
+
+    #fp-nav{
+        z-index: 10000;
+    }
+
+    #fp-nav.fp-left {
+        left: 0px;
+    }
+
+    #fp-nav ul li a span, .fp-slidesNav ul li a span{
+        background-color: #FFF;
+    }
+    .nav{
+        position: fixed;
+        left: 2%;
+        top: 50%;
+        z-index: 12;
+        width: 100px;
+        height: 600px;
+        margin-top: -300px;
+    }
+
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -227,4 +273,6 @@
         background-repeat: no-repeat;
         background-image: url(//game.gtimg.cn/images/up/act/a20170301pre/images/up2017pre_z.png);
     }
+
 </style>
+`

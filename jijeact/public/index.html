@@ -7,6 +7,10 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>几介</title>
 
+    <script>
+        if(window.location.href.split('#').length>=2)window.location.href = window.location.href.split('#')[0];
+    </script>
+
     <script type="x-shader/x-vertex" id="vertexshader">
 		attribute float size;
 		attribute vec3 position2;
@@ -110,13 +114,13 @@
     <script src="./lib/STLLoader.js"></script>
     <script src="./lib/PLYLoader.js"></script>
     <script src="./lib/GLTFLoader.js"></script>
+    <script src="./lib/orienter.js"></script>
+    <script src="./lib/fullpage.js"></script>
+    <script src="./lib/GeometryUtils.js"></script>
     <script src="./index.js"></script>
+
     <link rel="stylesheet" href="css/fullpage.min.css">
-    <script src="lib/fullpage.js"></script>
     <link rel="stylesheet" href="css/main.css">
-    <script src="lib/orienter.js"></script>
-
-
 </head>
 <body>
 <div id="app" class="webglyes resloaded introed fp-viewing-g fadeloading hideloading" style="overflow: hidden; height: 100%;    margin: 0;padding: 0;overflow: hidden;-webkit-tap-highlight-color: transparent;font-family: Helvetica,STHeiti,'Droid Sans Fallback';
