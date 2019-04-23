@@ -69,7 +69,7 @@ class ThreeDWorld {
                 {
                     scale: 0.2,
                     rotate: [0,0, 0],
-                    translate: [0, -0, 0],
+                    translate: [0, -0, 35],
                 },
             ],
         ];
@@ -420,7 +420,7 @@ class ThreeDWorld {
     }
 
     createText(){
-        var text = "JIJE VOID",
+        var text = "JIJE void",
             height = 20,
             size = 50,
             hover = 30,
