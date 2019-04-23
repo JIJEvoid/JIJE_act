@@ -99,13 +99,14 @@
 			gl_Position = projectionMatrix * mvPosition;
 		}
 	</script>
+
     <script type="x-shader/x-fragment" id="fragmentshader">
 		uniform vec3 color;
 		uniform sampler2D texture;
 		varying vec3 vColor;
 		varying float opacity;
 		void main() {
-			gl_FragColor = vec4(vColor * color, opacity);
+			gl_FragColor = vec4(vColor , opacity);
 			gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );
 		}
 	</script>
