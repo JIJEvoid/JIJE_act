@@ -139,8 +139,6 @@
                 else{
                     this.initMouseEvent();
                 }
-
-
             },
 
             // 判断浏览os
