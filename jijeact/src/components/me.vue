@@ -3,11 +3,11 @@
 
     <div style="width: 100%;height: 100%;">
 
-        <div class="txt right" :style="{height:imgHeight}" :class="{'active':hide}">
+        <div class="txt" :style="{height:imgHeight,top:imgTop}" :class="{'active':hide}" style="transform: translateX(-50%);left: 50%;">
             <img class="img" :src="img">
         </div>
 
-        <div class="dot" :class="{'active':hide}" @click.self="hideImg">
+        <!--<div class="dot" :class="{'active':hide}" @click.self="hideImg">
             <i class="iball" :title="item.title" @click="onclickItem(item)"
                :style="{width:item.size+'px',height:item.size+'px',top:item.top+'%',left:item.left+'%'}"
                v-for="(item,index) in itemList" :key="index">
@@ -15,7 +15,7 @@
 
                 </b>
             </i>
-        </div>
+        </div>-->
 
 
     </div>
@@ -32,7 +32,7 @@
             return {
                 target_img: '',//点击查看的图片
                 target_url: '',//点击查看的url
-                img: require('@/assets/t2.png'),
+                img: require('@/assets/t5.png'),
                 isshow: false,
                 transformRight:50,//右侧偏移
                 //item 光球的尺寸
@@ -105,7 +105,14 @@
                 if(window.innerHeight>window.innerWidth){
                     return `15%`;
                 }else{
-                    return `15%`;
+                    return `25%`;
+                }
+            },
+            imgTop:function () {
+                if(window.innerHeight>window.innerWidth){
+                    return `80%`;
+                }else{
+                    return `50%`;
                 }
             }
         },
@@ -116,4 +123,6 @@
 
 </script>
 <style scoped>
+
+
 </style>

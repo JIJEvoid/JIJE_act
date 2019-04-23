@@ -96,6 +96,20 @@
     right: 20%;
 }
 
+.mobile .txt.left{
+    top: 85vh;
+    right: 10px;
+    margin-bottom: 0px;
+    height: 10% !important;
+}
+
+.mobile .txt.right{
+    top: 85vh;
+    right: 10px;
+    margin-bottom: 0px;
+    height: 10% !important;
+}
+
 
 .img {
     height: 100%;
@@ -108,7 +122,7 @@
 }
 
 .slide-fade-leave-active {
-    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 
 .slide-fade-enter, .slide-fade-leave-to{

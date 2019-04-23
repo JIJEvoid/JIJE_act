@@ -1,6 +1,6 @@
 <template>
 
-    <div>
+    <div :class="{'mobile':$store.state.OS!='pc'}">
 
         <div style="position: absolute;width: 100vw;height: 100vh;top: 0;left: 0;z-index: 999;overflow: hidden;">
             <div id="fullpage" style="color: #fff;width: 100vw;height: 100vh;">
@@ -49,17 +49,23 @@
         </div>
 
         <transition name="fade">
-        <div v-cloak class="mouse" v-show="isInit">
+        <div v-cloak class="mouse" v-show="isInit&&$store.state.OS=='pc'&&selectIndex!=4">
+            <div class="outline"></div>
+            <div class="wheel"></div>
+        </div>
+        </transition>
+
+
+        <transition name="fade">
+        <div v-cloak class="mouse1" v-show="isInit&&$store.state.OS!='pc'&&selectIndex!=4">
             <div class="outline"></div>
             <div class="wheel"></div>
         </div>
         </transition>
 
         <transition name="fade">
-        <img :src="img.logo" v-show="isInit" style="position: absolute;top: 35px;left: 55px;z-index: 100;opacity: 0.9" alt="">
+            <img :src="img.logo" v-if="isInit" :style="{'top': +style.top+'px','left': +style.left+'px'}"  style="position: absolute;z-index: 100;opacity: 0.9" alt="">
         </transition>
-
-
 
         <audio src="./bgm.mp3" loop="loop" style="visibility: hidden;" autoplay="autoplay"></audio>
 
@@ -78,6 +84,7 @@
 
     export default {
         name: 'app',
+
         data: function () {
             return {
                 isInit:false,
@@ -97,9 +104,23 @@
                 theta: 0,
                 img:{
                     logo:require('@/assets/logo.png'),
+                },
+                /**mouse事件数据**/
+
+                // 位置偏移量
+                nowtransiform:{
+                    x:0,
+                    y:0,
+                },
+                // 旋转角度偏移量
+                nowrotate:{
+                    x:0,
+                    y:0,
+                    z:0,
                 }
             }
         },
+
         components: {
             game,
             photo,
@@ -108,11 +129,23 @@
             me,
             img3d
         },
+
         methods: {
+
+            init(){
+                this.selectIndex = 0;
+                this.createFullpage();
+                if(this.$store.state.OS!='pc')this.initDevices();
+                else{
+                    this.initMouseEvent();
+                }
+
+
+            },
 
             // 判断浏览os
             checkOS: function () {
-                if (this.$tools.IsPC) {
+                if (this.$tools.IsPC()) {
                     this.$store.state.OS = `pc`;
                 } else {
                     this.$store.state.OS = `mobile`;
@@ -157,16 +190,27 @@
                 this.target.z = Math.sin(this.phi) * Math.sin(this.theta);
 
                 if (window.three.particleSystem) {
-                    window.three.particleSystem.position.x = this.target.x * 15;
-                    window.three.particleSystem.position.y = this.target.y * 15;
+                    window.three.particleSystem.position.x = this.target.y * 30;
+                    window.three.particleSystem.position.y = this.target.x * 5;
                     window.three.particleSystem.rotation.y = this.target.z / 10;
                 }
 
             },
 
+            // 初始化鼠标mouse事件 随着鼠标屏幕位置,模型进行位移旋转
+            initMouseEvent :function(){
+                this.
+                document.body.addEventListener(`mousemove`,(e)=>{
+                    // 根据xy 进行模型位置的阻尼运动 系数0.15
+                    console.log(e.clientX,e.clientY);
+
+
+                },false)
+            },
+
             // 创建fullpage
             createFullpage:function () {
-                if(this.$store.state.OS=='pc')this.isInit = true;
+                this.isInit = true;
                 let me = this;
                 new window.fullpage('#fullpage', {
                     //options here
@@ -193,6 +237,23 @@
 
         },
 
+        computed:{
+            style:function () {
+                if(this.$store.state.OS=='pc'){
+                    return{
+                        top: 35,
+                        left: 55
+                    }
+                }
+                else{
+                    return{
+                        top: 10,
+                        left: 10
+                    }
+                }
+            }
+        },
+
         mounted: function () {
             window.onLoad();
         },
@@ -200,7 +261,7 @@
         created: function () {
             window.vm = this;
             this.checkOS();
-            this.initDevices();
+
         }
     }
 </script>
@@ -292,6 +353,27 @@
         animation: mousewheel 2s 2s infinite;
         background-repeat: no-repeat;
         background-image: url(//game.gtimg.cn/images/up/act/a20170301pre/images/up2017pre_z.png);
+    }
+
+    .mouse1 {
+        content: '';
+        background-image: url('./assets/downani.png');
+        width: 14px;
+        height: 28px;
+        background-size: cover;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        margin-left: -7px;
+        opacity: 1;
+        z-index: 999;
+        display: block;
+        -webkit-animation: mousewheelmobile 4s 2s infinite;
+        animation: mousewheelmobile 4s 2s infinite;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        margin-top: -47px;
+        animation: mousewheel 2s 2s infinite;
     }
 
 </style>

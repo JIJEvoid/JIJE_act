@@ -42,7 +42,7 @@ class ThreeDWorld {
                 {
                     scale: 0.4,
                     rotate: [0, 0 , 0],
-                    translate: [0, 0, 0],
+                    translate: [0, -50, 0],
                 },
             ],
             [
@@ -440,7 +440,7 @@ class ThreeDWorld {
 
             refreshText();
 
-        } );
+        });
 
         var refreshText =function () {
             var textGeo = new window.THREE.TextGeometry( text, {
@@ -648,8 +648,7 @@ class ThreeDWorld {
         function completeCallBack(order) {
             if (!this.isInit) {
                 this.isInit = !this.isInit;
-                window.vm.selectIndex = 0;
-                window.vm.createFullpage();
+                vm.init();
             }
             let uColor = particleSystem.material.uniforms.color.value;
             // 保存动画顺序状态
