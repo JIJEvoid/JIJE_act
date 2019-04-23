@@ -199,7 +199,6 @@
 
             // 初始化鼠标mouse事件 随着鼠标屏幕位置,模型进行位移旋转
             initMouseEvent :function(){
-                this.
                 document.body.addEventListener(`mousemove`,(e)=>{
                     // 根据xy 进行模型位置的阻尼运动 系数0.15
                     console.log(e.clientX,e.clientY);
