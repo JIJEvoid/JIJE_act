@@ -84,21 +84,21 @@
     margin-top: -9%;
     filter: blur(100px);
     opacity: 0;
-    width: 30%;
-    top: 35%;
+    top: 50%;
     position: absolute;
 }
 
 .txt.left {
-    left: 30px;
+    left: 20%;
 }
 
 .txt.right {
-    right: 30px;
+    right: 20%;
 }
 
+
 .img {
-    width: 100%;
+    height: 100%;
     pointer-events: none;
     border: 0;
 }
@@ -141,4 +141,11 @@ body{
 
 [v-cloak]{
     display: none;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 1.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
 }

@@ -12,7 +12,7 @@
         name: "transform3d_img",
         data(){
             return{
-                //img:require('@/assets/show1.jpg'),
+                img:require('@/assets/show1.jpg'),
             }
         },
 
