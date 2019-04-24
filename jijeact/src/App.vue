@@ -64,7 +64,7 @@
         </transition>
 
         <transition name="fade">
-            <img :src="img.logo" v-if="isInit" :style="{'top': +style.top+'px','left': +style.left+'px'}"  style="position: absolute;z-index: 100;opacity: 0.9" alt="">
+            <img :src="img.logo" v-if="isInit" :style="style"  style="position: absolute;z-index: 100;opacity: 0.9;" alt="">
         </transition>
 
         <audio src="./bgm.mp3" loop="loop" id="music" style="visibility: hidden;" autoplay="autoplay"></audio>
@@ -103,7 +103,7 @@
                 phi: 0,
                 theta: 0,
                 img:{
-                    logo:require('@/assets/logo.png'),
+                    logo:require('@/assets/logo1.png'),
                 },
                 /**mouse事件数据**/
 
@@ -226,7 +226,7 @@
                     },
                     scrollingSpeed: 1800,
                     anchors: ['page1', 'page2', 'page3', 'page4','page5',],
-                    navigation: false,
+                    navigation: true,
                     navigationPosition:'left',
                     navigationTooltips:['game','idea','other','medie','me'],
                     slidesNavigation:true,
@@ -243,14 +243,16 @@
             style:function () {
                 if(this.$store.state.OS=='pc'){
                     return{
-                        top: 35,
-                        left: 55
+                        top: `90%`,
+                        left: `20px`,
+                        height: `5%`,
                     }
                 }
                 else{
                     return{
-                        top: 10,
-                        left: 10
+                        top: `90%`,
+                        left: `0%`,
+                        height: `3%`,
                     }
                 }
             }

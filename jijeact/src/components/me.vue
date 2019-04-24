@@ -32,7 +32,7 @@
             return {
                 target_img: '',//点击查看的图片
                 target_url: '',//点击查看的url
-                img: require('@/assets/t5.png'),
+                img: require('@/assets/t6.png'),
                 isshow: false,
                 transformRight:50,//右侧偏移
                 //item 光球的尺寸
