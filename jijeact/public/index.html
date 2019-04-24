@@ -106,7 +106,8 @@
 		varying vec3 vColor;
 		varying float opacity;
 		void main() {
-			gl_FragColor = vec4(vColor , opacity);
+		    // vColor 用于进行颜色偏移
+			gl_FragColor = vec4(vColor * color, opacity);
 			gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );
 		}
 	</script>

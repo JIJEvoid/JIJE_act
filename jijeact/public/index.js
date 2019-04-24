@@ -648,7 +648,7 @@ class ThreeDWorld {
         function completeCallBack(order) {
             if (!this.isInit) {
                 this.isInit = !this.isInit;
-                vm.init();
+                window.vm.init();
             }
             let uColor = particleSystem.material.uniforms.color.value;
             // 保存动画顺序状态
@@ -661,9 +661,9 @@ class ThreeDWorld {
             }
             // 随机生成将要变换后的粒子颜色
             this.nextcolor = {
-                r: Math.random() * 0.5,
-                b: Math.random() * 0.5,
-                g: Math.random() * 0.5
+                r: Math.random() ,
+                b: Math.random() ,
+                g: Math.random()
             }
         }
 

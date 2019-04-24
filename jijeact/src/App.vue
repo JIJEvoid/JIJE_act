@@ -67,7 +67,7 @@
             <img :src="img.logo" v-if="isInit" :style="{'top': +style.top+'px','left': +style.left+'px'}"  style="position: absolute;z-index: 100;opacity: 0.9" alt="">
         </transition>
 
-        <audio src="./bgm.mp3" loop="loop" style="visibility: hidden;" autoplay="autoplay"></audio>
+        <audio src="./bgm.mp3" loop="loop" id="music" style="visibility: hidden;" autoplay="autoplay"></audio>
 
     </div>
 
@@ -134,6 +134,7 @@
 
             init(){
                 this.selectIndex = 0;
+                document.getElementById('music').play();
                 this.createFullpage();
                 if(this.$store.state.OS!='pc')this.initDevices();
                 else{
