@@ -69,6 +69,9 @@
 
         <audio src="./bgm.mp3" loop="loop" id="music" style="visibility: hidden;" autoplay="autoplay"></audio>
 
+        <div style="position: absolute;z-index: 999" :style="musicstyle" @click="handlerMusic">
+            <img :src="img.music" width="100%"/>
+        </div>
     </div>
 
 </template>
@@ -90,6 +93,7 @@
                 isInit:false,
                 selectIndex: -1,
                 orienter: null,
+                bgm:true,
                 self: {
                     drag: {lon: 0, lat: 0},
                     aim: {lat: 0, lon: 0},
@@ -104,6 +108,7 @@
                 theta: 0,
                 img:{
                     logo:require('@/assets/logo1.png'),
+                    music:require('@/assets/bgm_open.png'),
                 },
                 /**mouse事件数据**/
 
@@ -139,6 +144,17 @@
                 if(this.$store.state.OS!='pc')this.initDevices();
                 else{
                     this.initMouseEvent();
+                }
+            },
+
+            handlerMusic(){
+                this.bgm = !this.bgm;
+                if(this.bgm){
+                    document.getElementById('music').play();
+                    this.img.music=require('@/assets/bgm_open.png');
+                }else{
+                    document.getElementById('music').pause();
+                    this.img.music=require('@/assets/bgm_close.png');
                 }
             },
 
@@ -200,7 +216,6 @@
             initMouseEvent :function(){
                 document.body.addEventListener(`mousemove`,(e)=>{
                     // 根据xy 进行模型位置的阻尼运动 系数0.15
-                    console.log(e.clientX,e.clientY);
                     this.nowtransiform.x =  ((this.nowtransiform.x + (e.clientX - this.nowtransiform.x)*0.15)/window.innerWidth)*(20);
                     this.nowtransiform.y =  ((this.nowtransiform.y + (e.clientY - this.nowtransiform.y)*0.15)/window.innerHeight)*(20);
                     window.three.particleSystem.position.x = (this.nowtransiform.x);
@@ -245,6 +260,7 @@
                     return{
                         top: `90%`,
                         left: `20px`,
+
                         height: `5%`,
                     }
                 }
@@ -253,6 +269,24 @@
                         top: `90%`,
                         left: `0%`,
                         height: `3%`,
+                    }
+                }
+            },
+
+            musicstyle:function () {
+                if(this.$store.state.OS == 'pc'){
+                    return {
+                        right:'30px',
+                        top:'30px',
+                        width:'20px',
+                        height:'20px',
+                    }
+                }else{
+                    return{
+                        right:'10px',
+                        top:'10px',
+                        width:'20px',
+                        height:'20px',
                     }
                 }
             }

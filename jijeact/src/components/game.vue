@@ -43,8 +43,8 @@
                 itemList: [
                     {
                         title: '侠客天涯路',//标题
-                        img: './show1.jpg',//图片背景
-                        url:'https://www.baidu.com',
+                        img: './img/game/xktyl.png',//图片背景
+                        url:'http://news.yeyou.com/content/07232017/065934886_1.shtml',
                         size: parseInt(Math.random()*20)+30,//光球尺寸
                         left: 20,
                         top: 20,
@@ -53,9 +53,9 @@
 
                     },
                     {
-                        title: '侠客天涯路',//标题
-                        img: './show1.jpg',//图片背景
-                        url:'https://www.baidu.com',
+                        title: '速八酷跑',//标题
+                        img: './img/game/su8.png',//图片背景
+                        url:'https://h5.jzhu.cn/static/game2_runToSu8/index.html?sourcehierarchy=2&sourceway=3',
                         size: parseInt(Math.random()*20)+30,//光球尺寸
                         left: 16,
                         top: 25,
@@ -63,9 +63,9 @@
                         delay: parseInt(3*Math.random())+'s',//延迟时间
                     },
                     {
-                        title: '侠客天涯路',//标题
-                        img: './show1.jpg',//图片背景
-                        url:'https://www.baidu.com',
+                        title: '追月',//标题
+                        img: './img/game/zhuiyue.png',//图片背景
+                        url:'https://h5.jzhu.cn/static/game23_zhuiyue/index.html?sourcehierarchy=2&sourceway=3',
                         size: parseInt(Math.random()*20)+30,//光球尺寸
                         left: 30,
                         top: 51,
@@ -73,9 +73,9 @@
                         delay: parseInt(3*Math.random())+'s',//延迟时间
                     },
                     {
-                        title: '侠客天涯路',//标题
-                        img: './show1.jpg',//图片背景
-                        url:'https://www.baidu.com',
+                        title: '光之旅途',//标题
+                        img: './img/game/gzlt.png',//图片背景
+                        url:'https://h5.jzhu.cn/static/game22_snakeVsBlock/index.html?sourcehierarchy=2&sourceway=3',
                         size: parseInt(Math.random()*20)+30,//光球尺寸
                         left: 40,
                         top: 28,
@@ -83,11 +83,21 @@
                         delay: parseInt(3*Math.random())+'s',//延迟时间
                     },
                     {
-                        title: '侠客天涯路',//标题
-                        img: './show1.jpg',//图片背景
-                        url:'https://www.baidu.com',
+                        title: '太太乐堆出鲜美味',//标题
+                        img: './img/game/ttl.png',//图片背景
+                        url:'https://h5.jzhu.cn/static/game7_QieDanGao/index.html?sourcehierarchy=2&sourceway=3',
                         size: parseInt(Math.random()*20)+30,//光球尺寸
                         left: 10,
+                        top: 61,
+                        duration: parseInt(2*Math.random()+6)+'s',//持续时间
+                        delay: parseInt(3*Math.random())+'s',//延迟时间
+                    },
+                    {
+                        title: '更多游戏',//标题
+                        img: './img/game/gengduo.png',//图片背景
+                        url:'https://h5.jzhu.cn/static/newGameLib/',
+                        size: parseInt(Math.random()*20)+30,//光球尺寸
+                        left: 20,
                         top: 61,
                         duration: parseInt(2*Math.random()+6)+'s',//持续时间
                         delay: parseInt(3*Math.random())+'s',//延迟时间
