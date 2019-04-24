@@ -203,11 +203,10 @@
                     console.log(e.clientX,e.clientY);
                     this.nowtransiform.x =  ((this.nowtransiform.x + (e.clientX - this.nowtransiform.x)*0.15)/window.innerWidth)*(20);
                     this.nowtransiform.y =  ((this.nowtransiform.y + (e.clientY - this.nowtransiform.y)*0.15)/window.innerHeight)*(20);
-
                     window.three.particleSystem.position.x = (this.nowtransiform.x);
                     window.three.particleSystem.position.y = (this.nowtransiform.y);
-                    window.three.particleSystem.rotation.x = (this.nowtransiform.x/100);
-                    window.three.particleSystem.rotation.y = (this.nowtransiform.y/100);
+                    window.three.particleSystem.rotation.x = (this.nowtransiform.x/60);
+                    window.three.particleSystem.rotation.y = (this.nowtransiform.y/60);
 
                 },false)
             },
@@ -227,7 +226,7 @@
                     },
                     scrollingSpeed: 1800,
                     anchors: ['page1', 'page2', 'page3', 'page4','page5',],
-                    navigation: true,
+                    navigation: false,
                     navigationPosition:'left',
                     navigationTooltips:['game','idea','other','medie','me'],
                     slidesNavigation:true,
@@ -238,7 +237,6 @@
             linkto:function(i){
                 console.log(i);
             },
-
         },
 
         computed:{
