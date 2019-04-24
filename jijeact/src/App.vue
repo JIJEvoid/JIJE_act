@@ -201,7 +201,13 @@
                 document.body.addEventListener(`mousemove`,(e)=>{
                     // 根据xy 进行模型位置的阻尼运动 系数0.15
                     console.log(e.clientX,e.clientY);
+                    this.nowtransiform.x =  ((this.nowtransiform.x + (e.clientX - this.nowtransiform.x)*0.15)/window.innerWidth)*(20);
+                    this.nowtransiform.y =  ((this.nowtransiform.y + (e.clientY - this.nowtransiform.y)*0.15)/window.innerHeight)*(20);
 
+                    window.three.particleSystem.position.x = (this.nowtransiform.x);
+                    window.three.particleSystem.position.y = (this.nowtransiform.y);
+                    window.three.particleSystem.rotation.x = (this.nowtransiform.x/100);
+                    window.three.particleSystem.rotation.y = (this.nowtransiform.y/100);
 
                 },false)
             },
