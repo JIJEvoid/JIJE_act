@@ -243,8 +243,10 @@
                     anchors: ['page1', 'page2', 'page3', 'page4','page5',],
                     navigation: true,
                     navigationPosition:'left',
-                    navigationTooltips:['game','idea','other','medie','me'],
+                    showActiveTooltip:true,
+                    navigationTooltips:['游戏','设计','创意','视频','关于我们'],
                     slidesNavigation:true,
+
                 });
             },
 

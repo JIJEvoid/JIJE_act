@@ -41,9 +41,9 @@
                 //item 光球的尺寸
                 itemList: [
                     {
-                        title: '侠客天涯路',//标题
-                        img: './show1.jpg',//图片背景
-                        url:'https://www.baidu.com',
+                        title: '眼睛小超人',//标题
+                        img: './img/photo/yjxcr.png',//图片背景
+                        url:'https://www.zcool.com.cn/work/ZMzM4OTE3Mjg=.html',
                         size: parseInt(Math.random()*20)+30,//光球尺寸
                         left: 70,
                         top: 20,
@@ -52,9 +52,9 @@
 
                     },
                     {
-                        title: '侠客天涯路',//标题
-                        img: './show1.jpg',//图片背景
-                        url:'https://www.baidu.com',
+                        title: '北京青年影展',//标题
+                        img: './img/photo/bjqnyz.png',//图片背景
+                        url:'https://www.zcool.com.cn/work/ZMzM4NzEzNDQ=.html',
                         size: parseInt(Math.random()*20)+30,//光球尺寸
                         left: 66,
                         top: 25,
@@ -62,9 +62,9 @@
                         delay: parseInt(3*Math.random())+'s',//延迟时间
                     },
                     {
-                        title: '侠客天涯路',//标题
-                        img: './show1.jpg',//图片背景
-                        url:'https://www.baidu.com',
+                        title: '鹿肉零食包装Venison snack packaging',//标题
+                        img: './img/photo/lurou.png',//图片背景
+                        url:'https://www.behance.net/gallery/48959401/Venison-snack-packaging?tracking_source=search%257C%25E5%2587%25A0%25E4%25BB%258B',
                         size: parseInt(Math.random()*20)+30,//光球尺寸
                         left: 80,
                         top: 51,
@@ -72,9 +72,9 @@
                         delay: parseInt(3*Math.random())+'s',//延迟时间
                     },
                     {
-                        title: '侠客天涯路',//标题
-                        img: './show1.jpg',//图片背景
-                        url:'https://www.baidu.com',
+                        title: 'Artcorp VI 寰艺教育 品牌',//标题
+                        img: './img/photo/Artcorp.png',//图片背景
+                        url:'https://www.behance.net/gallery/50026349/Artcorp-VI-?tracking_source=search%257C%25E5%2587%25A0%25E4%25BB%258B',
                         size: parseInt(Math.random()*20)+30,//光球尺寸
                         left: 90,
                         top: 28,
@@ -82,9 +82,9 @@
                         delay: parseInt(3*Math.random())+'s',//延迟时间
                     },
                     {
-                        title: '侠客天涯路',//标题
-                        img: './show1.jpg',//图片背景
-                        url:'https://www.baidu.com',
+                        title: '好滴租车',//标题
+                        img: './img/photo/haodi.png',//图片背景
+                        url:'https://www.zcool.com.cn/work/ZMzQxNDM0NTY=.html',
                         size: parseInt(Math.random()*20)+30,//光球尺寸
                         left: 83,
                         top: 61,
