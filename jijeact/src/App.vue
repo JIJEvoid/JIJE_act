@@ -82,6 +82,8 @@
     import movie from './components/movie'
     import other from './components/other'
     import me from './components/me'
+    import axios from 'axios'
+
 
     import img3d from './components/child/transform3d_img'
 
@@ -301,6 +303,43 @@
         created: function () {
             window.vm = this;
             this.checkOS();
+
+            axios.get('https://jijetea.com/api/getsign?url='+encodeURIComponent(window.location.href.split('#')[0])).then(res=>{
+                console.log(res.data);
+                var t = res.data;
+                window.wx.config({
+                    debug: !1,
+                    appId: t.appId,
+                    timestamp: t.timestamp,
+                    nonceStr: t.noncestr,
+                    signature: t.signature,
+                    jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"]
+                }),
+                    window.wx.ready(function() {
+                        window.wx.onMenuShareTimeline({
+                            title: "jije",
+                            link: window.location.href.split('#')[0],
+                            imgUrl: "" ,
+                            success: function() {
+
+                            },
+                            cancel: function() {}
+                        }),
+                            window.wx.onMenuShareAppMessage({
+                                title: "jije",
+                                link: window.location.href.split('#')[0],
+                                imgUrl: "" ,
+                                desc: "写入代码 流出艺术" ,
+                                type: "",
+                                dataUrl: "",
+                                success: function() {
+
+                                },
+                                cancel: function() {}
+                            })
+                    })
+
+            })
 
         }
     }
