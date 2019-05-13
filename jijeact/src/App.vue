@@ -63,8 +63,8 @@
         </div>
         </transition>
 
-        <transition name="fade">
-            <img :src="img.logo" v-if="isInit" :style="style"  style="position: absolute;z-index: 100;opacity: 0.9;" alt="">
+        <transition  name="slide-fade">
+            <img :src="img.logo" v-if="isInit&&$store.state.OS=='pc'&&selectIndex==4" :style="style"  style="position: absolute;z-index: 100;opacity: 0.9;" alt="">
         </transition>
 
         <audio src="./bgm.mp3" loop="loop" id="music" style="visibility: hidden;" autoplay="autoplay"></audio>
@@ -303,8 +303,8 @@
         created: function () {
             window.vm = this;
             this.checkOS();
-
-            axios.get('https://jijetea.com/api/getsign?url='+encodeURIComponent(window.location.href.split('#')[0])).then(res=>{
+            //wx sdk
+            /*axios.get('https://jijetea.com/api/getsign?url='+encodeURIComponent(window.location.href.split('#')[0])).then(res=>{
                 console.log(res.data);
                 var t = res.data;
                 window.wx.config({
@@ -339,7 +339,7 @@
                             })
                     })
 
-            })
+            })*/
 
         }
     }
