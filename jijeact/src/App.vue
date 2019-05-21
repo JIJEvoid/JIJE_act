@@ -141,7 +141,6 @@
 
             init(){
                 this.selectIndex = 0;
-                document.getElementById('music').play();
                 this.createFullpage();
                 if(this.$store.state.OS!='pc')this.initDevices();
                 else{
