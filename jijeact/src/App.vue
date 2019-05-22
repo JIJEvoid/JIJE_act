@@ -146,6 +146,28 @@
                 else{
                     this.initMouseEvent();
                 }
+                this.initBGM();
+            },
+
+            initBGM(){
+                document.addEventListener('DOMContentLoaded', function () {
+                    function audioAutoPlay() {
+                        var audio = document.getElementById('music');
+                        audio.play();
+                        document.addEventListener("WeixinJSBridgeReady", function () {
+                            audio.play();
+                        }, false);
+                    }
+                    audioAutoPlay();
+                });
+//--创建触摸监听，当浏览器打开页面时，触摸屏幕触发事件，进行音频播放
+                function audioAutoPlay() {
+                    var audio = document.getElementById('music');
+                    audio.play();
+                    document.removeEventListener('touchstart',audioAutoPlay);
+                }
+                document.addEventListener('touchstart', audioAutoPlay);
+
             },
 
             handlerMusic(){
