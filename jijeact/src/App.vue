@@ -67,9 +67,9 @@
             <img :src="img.logo" v-if="isInit&&$store.state.OS=='pc'&&selectIndex==4" :style="style"  style="position: absolute;z-index: 100;opacity: 0.9;" alt="">
         </transition>
 
-        <audio src="./bgm.mp3" loop="loop" id="music" style="visibility: hidden;" autoplay="autoplay"></audio>
+        <audio src="./bgm.mp3"  id="music" style="visibility: hidden;" autoplay="autoplay"></audio>
 
-        <div style="position: absolute;z-index: 999" :style="musicstyle" @click="handlerMusic">
+        <div style="position: absolute;z-index: 999" :style="musicstyle" id="bmgBtn" @click="handlerMusic">
             <img :src="img.music" width="100%"/>
         </div>
     </div>
@@ -82,7 +82,7 @@
     import movie from './components/movie'
     import other from './components/other'
     import me from './components/me'
-    import axios from 'axios'
+    //import axios from 'axios'
 
 
     import img3d from './components/child/transform3d_img'
@@ -95,7 +95,7 @@
                 isInit:false,
                 selectIndex: -1,
                 orienter: null,
-                bgm:true,
+                bgm:false,
                 self: {
                     drag: {lon: 0, lat: 0},
                     aim: {lat: 0, lon: 0},
@@ -110,7 +110,7 @@
                 theta: 0,
                 img:{
                     logo:require('@/assets/logo1.png'),
-                    music:require('@/assets/bgm_open.png'),
+                    music:require('@/assets/bgm_close.png'),
                 },
                 /**mouse事件数据**/
 
@@ -146,11 +146,14 @@
                 else{
                     this.initMouseEvent();
                 }
+                console.log(`audio play`);
                 this.initBGM();
             },
 
             initBGM(){
+                document.getElementById('bmgBtn').click();
                 document.addEventListener('DOMContentLoaded', function () {
+                    alert('1')
                     function audioAutoPlay() {
                         var audio = document.getElementById('music');
                         audio.play();
@@ -159,6 +162,7 @@
                         }, false);
                     }
                     audioAutoPlay();
+                    console.log(`audio play`);
                 });
 //--创建触摸监听，当浏览器打开页面时，触摸屏幕触发事件，进行音频播放
                 function audioAutoPlay() {

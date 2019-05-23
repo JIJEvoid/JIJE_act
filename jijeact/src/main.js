@@ -10,6 +10,7 @@ Vue.prototype.$tools = tools;
 const store = new Vuex.Store({
     state: {
         imgPath: '',//target img src
+        imgName:'',
         url: '', //target url
         OS:'pc',//mobile
     },

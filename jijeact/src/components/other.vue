@@ -60,8 +60,8 @@
                         delay: parseInt(3*Math.random())+'s',//延迟时间
                     },
                     {
-                        title: '侠客天涯路',//标题
-                        img: './show1.jpg',//图片背景
+                        title: '昙曜广场',//标题
+                        img: './img/creativity/yungangshiku.png',//图片背景
                         url:'https://www.baidu.com',
                         size: parseInt(Math.random()*20)+30,//光球尺寸
                         left: 30,
@@ -70,9 +70,9 @@
                         delay: parseInt(3*Math.random())+'s',//延迟时间
                     },
                     {
-                        title: '侠客天涯路',//标题
-                        img: './show1.jpg',//图片背景
-                        url:'https://www.baidu.com',
+                        title: '云冈石窟博物馆',//标题
+                        img: './img/creativity/bowuguan.png',//图片背景
+                        url:'https://vr.jzhu.cn/vrh5/index.html?id=31&source=1&code=test&toscene=183',
                         size: parseInt(Math.random()*20)+30,//光球尺寸
                         left: 40,
                         top: 28,
@@ -80,9 +80,9 @@
                         delay: parseInt(3*Math.random())+'s',//延迟时间
                     },
                     {
-                        title: '侠客天涯路',//标题
-                        img: './show1.jpg',//图片背景
-                        url:'https://www.baidu.com',
+                        title: '山西大同城市立体名片',//标题
+                        img: './img/creativity/datong.png',//图片背景
+                        url:'https://vr.jzhu.cn/program/datong/',
                         size: parseInt(Math.random()*20)+30,//光球尺寸
                         left: 10,
                         top: 61,
@@ -96,6 +96,7 @@
             onclickItem: function (item) {
                 this.$store.state.imgPath = item.img;
                 this.$store.state.url = item.url;
+                this.$store.state.imgName = item.title;
             },
             hideImg() {
                 this.$store.state.imgPath = '';

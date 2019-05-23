@@ -98,6 +98,7 @@
             onclickItem: function (item) {
                 this.$store.state.imgPath = item.img;
                 this.$store.state.url = item.url;
+                this.$store.state.imgName = item.title;
             },
             hideImg() {
                 this.$store.state.imgPath = '';

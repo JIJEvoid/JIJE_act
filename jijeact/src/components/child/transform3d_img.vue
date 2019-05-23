@@ -1,7 +1,7 @@
 <template>
     <div class="center">
-        <div id="img" class="tar" @click="go">
-            <img :src="$store.state.imgPath" :style="{maxHeight:maxheight}"/>
+        <div id="img" class="tar" @click="go" :title="$store.state.imgName">
+            <img :src="$store.state.imgPath"  :style="{maxHeight:maxheight}" />
             <div class="size" id="mask"></div>
         </div>
     </div>
