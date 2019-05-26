@@ -42,60 +42,8 @@
                 //item 光球的尺寸
                 itemList: [
                     {
-                        title: '邓丽君音乐餐厅',//标题
-                        img: './img/creativity/dlj.png',//图片背景
-                        url:'https://vr.jzhu.cn/vrh5/index.html?id=10&source=0',
-                        size: parseInt(Math.random()*20)+30,//光球尺寸
-                        left: 20,
-                        top: 20,
-                        duration: parseInt(2*Math.random()+6)+'s',//持续时间
-                        delay: parseInt(3*Math.random())+'s',//延迟时间
-                    },
-                    {
-                        title: '杨邦杰,程峰画展',//标题
-                        img: './img/creativity/huazhan.png',//图片背景
-                        url:'https://vr.jzhu.cn/vrh5/index.html?id=22&source=0',
-                        size: parseInt(Math.random()*20)+30,//光球尺寸
-                        left: 16,
-                        top: 25,
-                        duration: parseInt(2*Math.random()+6)+'s',//持续时间
-                        delay: parseInt(3*Math.random())+'s',//延迟时间
-                    },
-                    {
-                        title: '昙曜广场',//标题
-                        img: './img/creativity/yungangshiku.png',//图片背景
-                        url:'https://www.baidu.com',
-                        size: parseInt(Math.random()*20)+30,//光球尺寸
-                        left: 30,
-                        top: 51,
-                        duration: parseInt(2*Math.random()+6)+'s',//持续时间
-                        delay: parseInt(3*Math.random())+'s',//延迟时间
-                    },
-                    {
-                        title: '云冈石窟博物馆',//标题
-                        img: './img/creativity/bowuguan.png',//图片背景
-                        url:'https://vr.jzhu.cn/vrh5/index.html?id=31&source=1&code=test&toscene=183',
-                        size: parseInt(Math.random()*20)+30,//光球尺寸
-                        left: 40,
-                        top: 28,
-                        duration: parseInt(2*Math.random()+6)+'s',//持续时间
-                        delay: parseInt(3*Math.random())+'s',//延迟时间
-                    },
-                    {
-                        title: '山西大同城市立体名片',//标题
-                        img: './img/creativity/datong.png',//图片背景
-                        url:'https://vr.jzhu.cn/program/datong/',
-                        size: parseInt(Math.random()*20)+30,//光球尺寸
-                        left: 10,
-                        top: 61,
-                        duration: parseInt(2*Math.random()+6)+'s',//持续时间
-                        delay: parseInt(3*Math.random())+'s',//延迟时间
-                    },
-                ],
-                itemList: [
-                    {
-                        title: '侠客天涯路',//标题
-                        img: './show1.jpg',//图片背景
+                        title: 'paperEngine壁纸集',//标题
+                        img: './img/movie.png',//图片背景
                         url:'https://www.baidu.com',
                         size: parseInt(Math.random()*20)+30,//光球尺寸
                         left: 70,
@@ -104,7 +52,7 @@
                         delay: parseInt(3*Math.random())+'s',//延迟时间
 
                     },
-                    {
+                    /*{
                         title: '侠客天涯路',//标题
                         img: './show1.jpg',//图片背景
                         url:'https://www.baidu.com',
@@ -143,7 +91,7 @@
                         top: 61,
                         duration: parseInt(2*Math.random()+6)+'s',//持续时间
                         delay: parseInt(3*Math.random())+'s',//延迟时间
-                    },
+                    },*/
                 ],
             }
         },

@@ -67,7 +67,7 @@
             <img :src="img.logo" v-if="isInit&&$store.state.OS=='pc'&&selectIndex==4" :style="style"  style="position: absolute;z-index: 100;opacity: 0.9;" alt="">
         </transition>
 
-        <audio src="./bgm.mp3"  id="music" style="visibility: hidden;" autoplay="autoplay"></audio>
+        <audio src="./bgm.mp3"  id="music" style="visibility: hidden;" loop="loop" ></audio>
 
         <div style="position: absolute;z-index: 999" :style="musicstyle" id="bmgBtn" @click="handlerMusic">
             <img :src="img.music" width="100%"/>
@@ -147,7 +147,7 @@
                     this.initMouseEvent();
                 }
                 console.log(`audio play`);
-                this.initBGM();
+                //this.initBGM();
             },
 
             initBGM(){
