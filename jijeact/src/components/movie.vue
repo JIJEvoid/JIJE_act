@@ -44,7 +44,7 @@
                     {
                         title: 'paperEngine壁纸集',//标题
                         img: './img/movie.png',//图片背景
-                        url:'https://www.baidu.com',
+                        url:'http://jijevoid.com/movie/',
                         size: parseInt(Math.random()*20)+30,//光球尺寸
                         left: 70,
                         top: 20,
@@ -52,6 +52,7 @@
                         delay: parseInt(3*Math.random())+'s',//延迟时间
 
                     },
+
                     /*{
                         title: '侠客天涯路',//标题
                         img: './show1.jpg',//图片背景

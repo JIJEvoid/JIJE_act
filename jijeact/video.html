@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="width: 100vw;height: 100vh;margin: 0;overflow: hidden">
+
+    <video src="1.webm" id="video" autoplay muted loop style="width: 100vw;height: 100vh;" >
+
+    </video>
+
+    <script>
+        window.onload=function () {
+            video.play();
+            video.muted=true;
+        }
+        var promise = document.querySelector('video').play();
+
+        if (promise !== undefined) {
+            promise.then(_ => {
+                // Autoplay started!
+                video.muted=true;
+            }).catch(error => {
+                // Autoplay was prevented.
+                // Show a "Play" button so that user can start playback.
+                console.log(`play failed`)
+            });
+        }
+    </script>
+</body>
+</html>
