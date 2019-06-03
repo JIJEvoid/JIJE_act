@@ -76,8 +76,8 @@
 			}
 
 			vPos.x = beforeposition.x * val + afterposition.x * (1.-val);
-			vPos.y = beforeposition.y* val + afterposition.y * (1.-val);
-			vPos.z = beforeposition.z* val + afterposition.z * (1.-val);
+			vPos.y = beforeposition.y * val + afterposition.y * (1.-val);
+			vPos.z = beforeposition.z * val + afterposition.z * (1.-val);
 
 			vec4 mvPosition = modelViewMatrix * vec4( vPos, 1.0 );
 			if(mvPosition.z > border){
