@@ -50,7 +50,6 @@
                         top: 20,
                         duration: parseInt(2*Math.random()+6)+'s',//持续时间
                         delay: parseInt(3*Math.random())+'s',//延迟时间
-
                     },
 
                     /*{

@@ -93,9 +93,12 @@
 			}
 
 			float positionY = vPos.y;
+			// 进行颜色偏移
 			vColor.x = abs(sin(positionY));
 			vColor.y = abs(cos(positionY));
 			vColor.z = abs(cos(positionY));
+
+
 			gl_Position = projectionMatrix * mvPosition;
 		}
 	</script>
@@ -107,6 +110,7 @@
 		varying float opacity;
 		void main() {
 		    // vColor 用于进行颜色偏移
+			//gl_FragColor = vec4(vColor * color, opacity);
 			gl_FragColor = vec4(vColor * color, opacity);
 			gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );
 		}
