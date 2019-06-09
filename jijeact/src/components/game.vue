@@ -7,7 +7,7 @@
             <img class="img" :src="img">
         </div>
 
-        <div class="dot" :class="{'active':hide}" @click.self="hideImg">
+        <div class="dot" :class="{'active':hide}" @click="hideImg">
             <i class="iball" :title="item.title" @click="onclickItem(item)" :style="{width:item.size+'px',height:item.size+'px',top:item.top+'%',left:item.left+'%'}" v-for="(item,index) in itemList" :key="index">
                 <b class="dotChild" :style="{animationDuration:item.duration,animationDelay:item.delay}">
 
