@@ -3,6 +3,7 @@
     <div :class="{'mobile':$store.state.OS!='pc'}">
 
         <div style="position: absolute;width: 100vw;height: 100vh;top: 0;left: 0;z-index: 999;overflow: hidden;">
+
             <div id="fullpage" style="color: #fff;width: 100vw;height: 100vh;">
 
                 <div class="section">
@@ -40,9 +41,7 @@
             <transition name="slide-fade">
                 <img3d v-if="$store.state.imgPath" style=""></img3d>
             </transition>
-
         </div>
-
 
         <div id="world" style="position: absolute;width: 100vw;height: 100vh;top: 0;left: 0;z-index: 1">
 
